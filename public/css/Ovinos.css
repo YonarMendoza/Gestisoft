@@ -1,0 +1,45 @@
+
+h1{
+    font-size: 70px;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 40px;
+    margin-left: 80px;
+}
+
+p{
+    font-size: 19px;
+    line-height: 30px;
+    width: 50%;
+    margin: auto;
+    margin-left: 80px;
+}
+
+.izquierda{
+    background:white;
+    color: black;
+    height: 74.4hv;
+    width: 50%;
+    margin-top: 43px;
+    margin-bottom: 25px;
+}
+
+.derecha{
+    margin-top: 20px;
+    background: url(../imagen/Ovinos.jfif);
+    background-size: cover;
+    background-position: center;
+    border-radius: 10%;
+    width: 50%;
+    height: 74.4vh;
+    border: 6px solid black;
+    margin-left: -20px;
+    margin-bottom: 25px;
+}
+section{
+    background:white;
+}
+
+#pantalla-dividida {
+    display: flex;
+}

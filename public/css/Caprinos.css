@@ -1,0 +1,46 @@
+
+h1{
+    font-size: 70px;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 40px;
+    margin-left: 80px;
+}
+
+p{
+    font-size: 19px;
+    line-height: 30px;
+    width: 50%;
+    margin: auto;
+    margin-left: 80px;
+}
+
+.izquierda{
+    background:black;
+    color: white;
+    height: 74.4hv;
+    width: 50%;
+    margin-top: 43px;
+    border: 6px solid black;
+    margin-bottom: 25px;
+}
+
+.derecha{
+    margin-top: 20px;
+    background: url(../imagen/Cabra.jpeg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    width: 37%;
+    height: 74.4vh;
+    border: 6px solid ghostwhite;
+    margin-left: 60px;
+    margin-bottom: 25px;
+}
+section{
+    background: black;
+}
+
+#pantalla-dividida {
+    display: flex;
+}
