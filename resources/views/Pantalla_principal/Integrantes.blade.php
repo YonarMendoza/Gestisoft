@@ -1,16 +1,13 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="es">
 
 <head>
-    <meta charset="utf-8">
+<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ asset('img/aaa.ico')}}" type="image/x-icon">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>Gestisoft</title>
-
-    <!-- Fonts -->
+    <link rel="stylesheet" href="{{ asset('css/Caprinos.css')}}">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <script src="https://kit.fontawesome.com/17405db9f0.js" crossorigin="anonymous"></script>
@@ -19,7 +16,7 @@
 </head>
 
 <body>
-    <div id="app">
+<div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a style="margin-left: -80px;" class="navbar-brand" href="{{ url('/') }}">
@@ -39,7 +36,7 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('img/Conejo1.png') }}" style="width: 20px;margin-left:20px" alt="Icono SVG"><br>Gestionar <br> Razas
+                                Gestionar Razas
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ url('agregarRaza') }}">Registrar raza</a></li>
@@ -48,7 +45,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('img/cerro.png') }}" style="width: 20px;margin-left:20px" alt="Icono SVG"><br>Gestionar <br> Unidades
+                                Gestionar Unidades
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ url('agregarUnidad') }}">Registrar Unidad</a></li>
@@ -57,7 +54,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('img/Cabra1.webp') }}" style="width: 20px;margin-left:15px" alt="Icono SVG"><br>Gestionar <br> Semovientes
+                                Gestionar Semovientes
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ url('agregarSemoviente') }}">Registrar Semoviente</a></li>
@@ -66,7 +63,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('img/alarma.png') }}" style="width: 20px;margin-left:20px" alt="Icono SVG"><br> Gestionar <br> Novedades
+                                Gestionar Novedades
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ url('agregarNovedad') }}">Registrar Novedad</a></li>
@@ -75,7 +72,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('img/craneo-de-toro.png') }}" style="width: 25px;margin-left:20px" alt="Icono SVG"><br> Gestionar <br> Mortalidades
+                                Gestionar Mortalidades
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ url('agregarMortalidad') }}">Registrar Mortalidad</a></li>
@@ -97,13 +94,13 @@
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i style="margin-left: 17px;" class="fa-solid fa-user-xmark"></i> <br> {{ Auth::user()->name }}
+                                {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    Cerrar Sesion
+                                    {{ __('Logout') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -121,6 +118,31 @@
             @yield('content')
         </main>
     </div>
+    <main>
+        <section>
+            <img src="Logo_final.png" alt="Person 1">
+            <h2>Yonar Estiber Mendoza Cuellar</h2>
+            <p>Rol: Analista y Desarrollador</p>
+        </section>
+        <section>
+            <img src="Logo_final.png" alt="Person 2">
+            <h2>Laura Valentina Manchola Parra</h2>
+            <p>Rol: Analista y Desarrolladora</p>
+        </section>
+        <section>
+            <img src="Logo_final.png" alt="Person 3">
+            <h2>Leidy Vanessa Jara <br> Saez</h2>
+            <p>Rol: Analista y Desarrolladora</p>
+        </section>
+        <section>
+            <img src="Logo_final.png" alt="Person 2">
+            <h2>Carol Tatiana Carrera Quintana</h2>
+            <p>Rol: Analista y Desarrolladora</p>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

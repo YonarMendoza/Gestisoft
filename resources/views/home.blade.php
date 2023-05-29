@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <p>¡ Bienvenido de nuevo <b>{{ Auth::user()->name }} </b>! Nos complace verte de regreso. <br> Esperamos que hayas tenido un buen día y estés listo para sumergirte en una experiencia increíble. En nuestro sitio, encontrarás una amplia gama de opciones y funciones para explorar y disfrutar.</p>
                 </div>
             </div>
         </div>

@@ -20,6 +20,8 @@ const app = createApp({
             
             textoRaza:"",
             centroRaza:[],
+            textoUnidad:"",
+            centroUnidad:[],
         }
        
     },
@@ -71,6 +73,19 @@ const app = createApp({
                         //Se direcciona para que vuelva a cargar los aprendices que quedaron
                         window.location.href = "http://127.0.0.1:8000/unidad/"
 
+                })
+            }
+
+        },
+        buscarUnidad(){
+            if(this.textoUnidad.length > 0){
+                axios.get('http://127.0.0.1:8000/centroUnidadBuscar/'+this.textoUnidad).then((respuesta)=>{
+                    this.centroUnidad = respuesta.data
+                })
+            }else{
+                console.log("Esta buscando todo")
+                axios.get('http://127.0.0.1:8000/centroUnidadBuscar/-').then((respuesta)=>{
+                    this.centroUnidad= respuesta.data
                 })
             }
 

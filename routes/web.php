@@ -33,3 +33,8 @@ Route::resource('/mortalidad', App\Http\Controllers\MortalidadController::class)
 Route::get('/agregarMortalidad', [App\Http\Controllers\MortalidadController::class, 'agregar']);
 Route::get('/centroRazaBuscar/{cadena}', [App\Http\Controllers\RazaController::class,'centroRazaBuscar']);
 Route::resource('/index', App\Http\Controllers\IndexController::class);
+Route::resource('/caprinos', App\Http\Controllers\CaprinosController::class);
+Route::resource('/cunicultura', App\Http\Controllers\CuniculturaController::class);
+Route::resource('/ganaderia', App\Http\Controllers\GanaderiaController::class);
+Route::resource('/ovinos', App\Http\Controllers\OvinosController::class);
+Route::get('/centroUnidadBuscar/{cadena}', [App\Http\Controllers\UnidadController::class,'centroUnidadBuscar']);

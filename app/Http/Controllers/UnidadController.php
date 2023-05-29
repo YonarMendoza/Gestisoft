@@ -8,8 +8,25 @@ use App\Models\UnidadModel;
 class UnidadController extends Controller
 {
     public function index(){
-        $Unidad = UnidadModel::all();
-        return view("paginas.Unidad", array("Unidad" => $Unidad));
+       
+        return view("paginas.Unidad");
+
+    }
+    public function centroUnidadBuscar($textoUnidad, Request $request){
+        if($request -> ajax()){
+            if($textoUnidad == "-"){
+                $centroUnidad = UnidadModel::where('Id_unidad','!=','0')->get();
+                return $centroUnidad;
+            }
+        else{        
+
+            $centroUnidad = UnidadModel::where('Nom_unidad','like','%'.$textoUnidad.'%')
+            ->orWhere('Codigo_unidad','like','%'.$textoUnidad.'%')
+            ->orWhere('Total_animales','like','%'.$textoUnidad.'%')
+            ->get();
+            return $centroUnidad;
+        }
+    }
 
     }
 

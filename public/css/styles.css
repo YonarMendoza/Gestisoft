@@ -1,5 +1,4 @@
-
-h1{
+h1 {
     font-size: 70px;
     width: 50%;
     margin: auto;
@@ -7,17 +6,17 @@ h1{
     margin-left: 80px;
 }
 
-p{
+p {
     font-size: 17px;
     line-height: 30px;
     width: 50%;
     margin: auto;
     margin-left: 80px;
-    
+
 }
 
-.izquierda{
-    background:transparent;
+.izquierda {
+    background: transparent;
     color: white;
     height: 74.4hv;
     width: 50%;
@@ -25,23 +24,22 @@ p{
     margin-bottom: 25px;
 }
 
-.derecha{
+.derecha {
     margin-top: 32px;
     background: url("../img/Granja.jpg");
-    background-size: cover;
+    background-size:cover;
     background-position: center;
-    border-radius: 10%;
-    width: 50%;
+    border-radius: 50%;
+    width: 37%;
     height: 74.4vh;
-    border: 7px ridge orange;
-    margin-left: -20px;
+    border: 7px ridge white;
+    margin-left: 40px;
     margin-bottom: 25px;
 }
-section{
-    background-color: #000000;
-    background-image: linear-gradient(160deg, #000000 17%, #1e9207 100%);
-    
 
+section {
+    background: rgba(1, 1, 1, 1.0);
+    background: linear-gradient(315deg, rgba(1, 1, 1, 1.0), rgba(6, 118, 43, 1.0));
 }
 
 #pantalla-dividida {

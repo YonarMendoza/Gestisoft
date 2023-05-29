@@ -1,46 +1,48 @@
-
-h1{
-    font-size: 60px;
+h1 {
+    font-size: 70px;
     width: 50%;
     margin: auto;
     margin-bottom: 40px;
     margin-left: 80px;
 }
 
-p{
-    font-size: 19px;
+p {
+    font-size: 17px;
     line-height: 30px;
     width: 50%;
     margin: auto;
     margin-left: 80px;
+
 }
 
-.izquierda{
-    background:black;
+.izquierda {
+    background: transparent;
     color: white;
     height: 74.4hv;
     width: 50%;
-    margin-top: 43px;
-    border: 6px solid black;
+    margin-top: 46px;
     margin-bottom: 25px;
 }
 
-.derecha{
-    margin-top: 20px;
-    background: url(../imagen/Uni_Ganaderia.jpg);
+.derecha {
+    margin-top: 32px;
+    background: url("../img/Uni_Ganaderia.jpg");
     background-size:cover;
     background-position: center;
-    border-radius: 50%;
     width: 37%;
     height: 74.4vh;
-    border: 6px solid ghostwhite;
-    margin-left: 60px;
+    border-radius: 50%;
+    border: 7px ridge white;
+    margin-left: 40px;
     margin-bottom: 25px;
 }
-section{
-    background: black;
+
+section {
+    background: rgba(1, 1, 1, 1.0);
+    background: linear-gradient(315deg, rgba(1, 1, 1, 1.0), rgba(6, 118, 43, 1.0));
 }
 
 #pantalla-dividida {
     display: flex;
+    margin-top: -60px;
 }

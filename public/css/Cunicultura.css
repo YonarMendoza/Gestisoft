@@ -1,5 +1,4 @@
-
-h1{
+h1 {
     font-size: 70px;
     width: 50%;
     margin: auto;
@@ -7,39 +6,43 @@ h1{
     margin-left: 80px;
 }
 
-p{
-    font-size: 19px;
+p {
+    font-size: 17px;
     line-height: 30px;
     width: 50%;
     margin: auto;
     margin-left: 80px;
+
 }
 
-.izquierda{
-    background:white;
-    color: black;
+.izquierda {
+    background: transparent;
+    color: white;
     height: 74.4hv;
     width: 50%;
-    margin-top: 43px;
+    margin-top: 46px;
     margin-bottom: 25px;
 }
 
-.derecha{
-    margin-top: 20px;
-    background: url(../imagen/Conejo.png);
-    background-size: cover;
+.derecha {
+    margin-top: 32px;
+    background: url("../img/Conejo.png");
+    background-size:cover;
     background-position: center;
-    border-radius: 10%;
-    width: 50%;
+    border-radius: 50%;
+    width: 37%;
     height: 74.4vh;
-    border: 6px solid black;
-    margin-left: -20px;
+    border: 7px ridge white;
+    margin-left: 40px;
     margin-bottom: 25px;
 }
-section{
-    background:white;
+
+section {
+    background: rgba(1, 1, 1, 1.0);
+    background: linear-gradient(315deg, rgba(1, 1, 1, 1.0), rgba(6, 118, 43, 1.0));
 }
 
 #pantalla-dividida {
     display: flex;
+    margin-top: -60px;
 }
