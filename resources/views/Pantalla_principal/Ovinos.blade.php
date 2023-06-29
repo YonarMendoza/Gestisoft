@@ -51,36 +51,16 @@
                                         <li><a class="dropdown-item" href="{{ url('ovinos') }}"><b>Unidad De Ovinos</b></a></li>
                                     </ul>
                                 </li>
-                                @guest
-                                @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="{{ url('quienes') }}"><i style="margin-left:40px" class="fa-solid fa-users"></i> <br><b>Quienes Somos</b></a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link active" href="{{ route('login') }}"><i style="margin-left:40px" class="fa-sharp fa-solid fa-user"></i> <br><b>{{ __('Iniciar Sesion') }}</b></a>
                                 </li>
-                                @endif
 
-                                @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link active" href="{{ route('register') }}"><i style="margin-left:30px" class="fa-solid fa-user-plus"></i><br><b>{{ __('Registrarse') }}</b></a>
                                 </li>
-                                @endif
-                                @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                                @endguest
                             </ul>
                         </div>
                 </div>
@@ -95,7 +75,7 @@
             <br>
             <h1>Unidad De Ovinos</h1>
             <br>
-            <p>Una unidad de ovejas en una granja generalmente se refiere a un grupo de ovejas que se mantienen y crían juntas como un solo rebaño. <br> El tamaño de la unidad puede variar según las prácticas de manejo de la granja y el número de ovejas en el rebaño.</p>
+            <p>En la unidad de ovinos, se encuentran 68 semovientes, incluyendo 22 ovejas, 2 productores, 5 borregas de vientre, 3 borregos, 2 hembras en etapa de levante, 1 macho en etapa de levante, 18 corderas y 18 corderos. Esta unidad es manejada por pasantes, el instructor Orlando Solano (médico veterinario zootecnista) y aprendices en proceso lectivo.</p>
         </div>
         <div class="derecha"></div>
     </section>

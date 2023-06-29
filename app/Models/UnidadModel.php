@@ -9,4 +9,8 @@ class UnidadModel extends Model
 {
     use HasFactory;
     protected $table = 'unidades';
+
+    public function semoviente(){
+        return $this->belongsTo('App\Models\SemovienteModel','Id_unidad','Id_unidad');
+    }
 }

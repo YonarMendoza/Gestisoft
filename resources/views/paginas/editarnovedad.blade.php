@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card"  style="border: 3px ridge white">
                 <div class="card-header">{{ __('Registro De Novedades') }}</div>
 
                 <div class="card-body">
@@ -16,7 +16,7 @@
                             <label for="Fech_novedad" class="col-md-4 col-form-label text-md-end">{{ __('Codigo De La Novedad') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Codigo_novedad" type="number" min="0" value="{{ $novedad['Codigo_novedad']}}" class="form-control @error('Codigo_novedad') is-invalid @enderror" name="Codigo_novedad" value="{{ old('Codigo_novedad') }}" required autocomplete="Codigo_novedad">
+                                <input id="Codigo_novedad" readonly type="number" min="0" value="{{ $novedad['Codigo_novedad']}}" class="form-control @error('Codigo_novedad') is-invalid @enderror" name="Codigo_novedad" value="{{ old('Codigo_novedad') }}" required autocomplete="Codigo_novedad">
 
                                 @error('Codigo_novedad')
                                 <span class="invalid-feedback" role="alert">

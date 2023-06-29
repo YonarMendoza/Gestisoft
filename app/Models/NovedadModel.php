@@ -9,4 +9,9 @@ class NovedadModel extends Model
 {
     use HasFactory;
     protected $table = 'novedad';
+
+    public function semoviente(){
+        return $this->belongsTo('App\Models\SemovienteModel','Id_semoviente','Id_semoviente');
+    }
+
 }

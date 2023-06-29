@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card"  style="border: 3px ridge white">
                 <div class="card-header">{{ __('Registro De Razas') }}</div>
 
                 <div class="card-body">
@@ -12,19 +12,6 @@
                     <form method="POST" action="{{ url('/')}}/raza/{{$raza['Id_raza']}}">
                         @csrf
                         @method('PUT')
-                        <div class="row mb-3">
-                            <label for="Codigo_raza" class="col-md-4 col-form-label text-md-end">{{ __('Codigo De La Raza') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="Codigo_raza" type="text" value="{{ $raza['Codigo_raza']}}" class="form-control @error('Codigo_raza') is-invalid @enderror" name="Codigo_raza" value="{{ old('Codigo_raza') }}" required autocomplete="Codigo_raza">
-
-                                @error('Codigo_raza')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
 
                         <div class="row mb-3">
                             <label for="Nom_raza" class="col-md-4 col-form-label text-md-end">{{ __('Nombre De La Raza') }}</label>

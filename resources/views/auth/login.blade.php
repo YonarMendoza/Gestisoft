@@ -8,7 +8,6 @@
     <!-- CSRF Token -->
     <title>Gestisoft</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{ asset('css/Login.css')}}">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <script src="https://kit.fontawesome.com/17405db9f0.js" crossorigin="anonymous"></script>
@@ -16,10 +15,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body style=" background: rgba(1, 1, 1, 1.0);
-                background: linear-gradient(315deg, rgba(1, 1, 1, 1.0), rgba(6, 118, 43, 1.0));
-                background-repeat: no-repeat;
-                ">
+<body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="font-size: 17px;">
             <div class="container">
@@ -54,94 +50,87 @@
                                         <li><a class="dropdown-item" href="{{ url('ovinos') }}"><b>Unidad De Ovinos</b></a></li>
                                     </ul>
                                 </li>
-                                @guest
-                                @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="{{ url('quienes') }}"><i style="margin-left:40px" class="fa-solid fa-users"></i> <br><b>Quienes Somos</b></a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link active" href="{{ route('login') }}"><i style="margin-left:40px" class="fa-sharp fa-solid fa-user"></i> <br><b>{{ __('Iniciar Sesion') }}</b></a>
                                 </li>
-                                @endif
 
-                                @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link active" href="{{ route('register') }}"><i style="margin-left:30px" class="fa-solid fa-user-plus"></i><br><b>{{ __('Registrarse') }}</b></a>
                                 </li>
-                                @endif
-                                @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                                @endguest
                             </ul>
                         </div>
                 </div>
         </nav>
-
 
         <main class="py-4">
             @yield('content')
         </main>
     </div>
 
-    <div>
-        <div class="col-md-7">
-            <div class="card" style="width: 600px; margin-left: 350px;height:570px;margin-top:-30px;margin-bottom:30px; border: 7px ridge white;   border-radius: 50%;">
+    <section class="vh-100" style="background: rgba(1, 1, 1, 1.0);
+                background: linear-gradient(315deg, rgba(1, 1, 1, 1.0), rgba(6, 118, 43, 1.0));
+                background-repeat: no-repeat;margin-top:-50px">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+                    <div class="card" style="border-radius: 5rem;">
+                        <div class="row g-0">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block">
+                                <img src="{{asset('img/aaa.png')}}" alt="login form" class="img-fluid" style="margin-left:10px;margin-top:80px" />
+                            </div>
+                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5 text-black">
 
-                <div class="card-body" style="width: 400px; margin-left: 90px;">
+                                    <form action="{{route('login')}}" method="post">
+                                        @csrf
 
-                    <div class="text-center">
-                        <img src="{{ asset('img/aaa.png')}}" style="width: 100px;height: 100px;margin-top: 10px;">
-                        <br>
-                        <h4 style="margin-top: 30px;"><b>Iniciar Sesión</b></h4>
-                    </div>
+                                        <div class="d-flex align-items-center mb-3 pb-1">
+                                            <i class="fas fa-cubes fa-2x me-3" style="color: green;"></i>
+                                            <span class="h1 fw-bold mb-0">Gestisoft</span>
+                                        </div>
 
-                    <form method="post" action="{{route('login')}}">
-                        @csrf
-                        <br>
-                        <h style="margin-top: 10px;"><b>Por Favor, Ingresar Tu Correo Electronico Y Contraseña</b></h>
-                        <div class="form-outline mb-4" style="margin-top: 20px;">
-                            <label class="form-label" for="form2Example11"><b>Correo Electronico</b></label>
-                            <input type="email" name="email" id="form2Example11" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Ingrese Tu Correo Electronico" />
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
+                                        <h4 style="margin-top: 30px;margin:auto"><b>Iniciar Sesión</b></h4>
+                                        <br>
 
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="form2Example22"><b>Contraseña</b></label>
-                            <input type="password" name="password" id="form2Example22" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Ingrese Tu Contraseña" />
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
+                                        <h style="margin-top: 10px;"><b>Por Favor, Ingresar Tu Correo Electronico Y Contraseña</b></h>
+                                        <div class="form-outline mb-4" style="margin-top: 20px;">
+                                            <label class="form-label" for="form2Example11"><b>Correo Electronico</b></label>
+                                            <input type="email" name="email" id="form2Example11" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Ingrese Tu Correo Electronico" />
+                                            @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
 
-                        <div class="text-center pt-1 mb-5 pb-1">
-                            <button style="  background-image: linear-gradient(to right, black, green);
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" for="form2Example22"><b>Contraseña</b></label>
+                                            <input type="password" name="password" id="form2Example22" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Ingrese Tu Contraseña" />
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="text-center pt-1 mb-5 pb-1">
+                                            <button style="  background-image: linear-gradient(to right, black, green);
                                 color: white;padding: 10px 20px;border: none;border-radius: 5px;font-size: 16px;cursor: pointer;" type="submit">Iniciar Sesión
-                            </button>
-                        </div>
-                    </form>
+                                            </button>
+                                        </div>
+                                    </form>
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </body>
 
 </html>

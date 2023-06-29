@@ -4,21 +4,22 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Registro De Semovientes') }}</div>
+            <div class="card" style="border: 3px ridge white">
+                <div class="card-header">
+                    <h5 style="margin-left: 240px;">Registro De Semovientes</h5>
+                </div>
 
                 <div class="card-body">
 
                     <form method="POST" action="{{ url('/')}}/semoviente/">
                         @csrf
-
                         <div class="row mb-3">
-                            <label for="Codigo_semoviente" class="col-md-4 col-form-label text-md-end">{{ __('Codigo Del Semoviente') }}</label>
+                            <label for="Placa_inventario" class="col-md-4 col-form-label text-md-end">{{ __('Placa De Inventario') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Codigo_semoviente" type="number" min="0" value="" class="form-control @error('Codigo_semoviente') is-invalid @enderror" name="Codigo_semoviente" value="{{ old('Codigo_semoviente') }}" required autocomplete="Codigo_semoviente">
+                                <input id="Placa_inventario" type="number" min="0" value="" placeholder="Ingrese La Placa De Inventario" class="form-control @error('Placa_inventario') is-invalid @enderror" name="Placa_inventario" value="{{ old('Placa_inventario') }}" required autocomplete="Placa_inventario">
 
-                                @error('Codigo_semoviente')
+                                @error('Placa_inventario')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -32,7 +33,7 @@
                                     <option value="">Seleccione una...</option>
                                     @foreach($unidad as $Unidad)
                                     <option value="{{$Unidad['Id_unidad']}}">
-                                        {{$Unidad['Codigo_unidad'].' --- '.$Unidad['Nom_unidad']}}
+                                        {{$Unidad['Nom_unidad']}}
                                     </option>
                                     @endforeach
                                 </select>
@@ -49,7 +50,7 @@
                             <label for="Nom_semoviente" class="col-md-4 col-form-label text-md-end">{{ __('Nombre Del Semoviente') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Nom_semoviente" type="text" value="" class="form-control @error('Nom_semoviente') is-invalid @enderror" name="Nom_semoviente" value="{{ old('Nom_semoviente') }}" required autocomplete="Nom_semoviente">
+                                <input id="Nom_semoviente" type="text"  placeholder="Ingrese El Nombre Del Semoviente" class="form-control @error('Nom_semoviente') is-invalid @enderror" name="Nom_semoviente" value="{{ old('Nom_semoviente') }}" required autocomplete="Nom_semoviente">
 
                                 @error('Nom_semoviente')
                                 <span class="invalid-feedback" role="alert">
@@ -66,7 +67,7 @@
                                     <option value="" selected>Seleccione una...</option>
                                     @foreach($raza as $Raza)
                                     <option value="{{$Raza['Id_raza']}}">
-                                        {{$Raza['Codigo_raza'].' --- '.$Raza['Nom_raza']}}
+                                        {{$Raza['Nom_raza']}}
                                     </option>
                                     @endforeach
                                 </select>
@@ -86,6 +87,10 @@
                                     <option value="" selected>Seleccione una...</option>
                                     <option value="Reproductor">Reproductor</option>
                                     <option value="Lactante">Lactante</option>
+                                    <option value="Levante">Levante</option>
+                                    <option value="Ceba">Ceba</option>
+                                    <option value="Hembra en etapa de reproducción">Hembra en etapa de reproducción</option>
+                                    <option value="Hembra de vientre">Hembra de vientre</option>
                                 </select>
                                 @error('Tipo_semoviente')
                                 <span class="invalid-feedback" role="alert">
@@ -127,7 +132,7 @@
                             <label for="Peso_nacimiento" class="col-md-4 col-form-label text-md-end">{{ __('Peso De Nacimiento(Kg)') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Peso_nacimiento" step="any" type="number" min="0" value="" class="form-control @error('Peso_nacimiento') is-invalid @enderror" name="Peso_nacimiento" value="{{ old('Peso_nacimiento') }}" required autocomplete="Peso_nacimiento">
+                                <input id="Peso_nacimiento" step="any" type="number" min="0" value="" placeholder="Ingrese El Peso De Nacimiento" class="form-control @error('Peso_nacimiento') is-invalid @enderror" name="Peso_nacimiento" value="{{ old('Peso_nacimiento') }}" required autocomplete="Peso_nacimiento">
 
                                 @error('Peso_nacimiento')
                                 <span class="invalid-feedback" role="alert">
@@ -136,19 +141,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="Placa_inventario" class="col-md-4 col-form-label text-md-end">{{ __('Placa De Inventario') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="Placa_inventario" type="number" min="0" value="" class="form-control @error('Placa_inventario') is-invalid @enderror" name="Placa_inventario" value="{{ old('Placa_inventario') }}" required autocomplete="Placa_inventario">
-
-                                @error('Placa_inventario')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
+                       
                         <div class="row mb-3">
                             <label for="Fech_ingreso" class="col-md-4 col-form-label text-md-end">{{ __('Fecha De Ingreso') }}</label>
 
@@ -170,7 +163,7 @@
                                     <option value="" selected>Seleccione una...</option>
                                     <option value="Nacimiento">Nacimiento</option>
                                     <option value="Compra">Compra</option>
-                                    <option value="Obsequio">Obsequio</option>
+                                    <option value="Donación">Donación</option>
                                 </select>
 
                                 @error('Tipo_ingreso')

@@ -51,36 +51,17 @@
                                         <li><a class="dropdown-item" href="{{ url('ovinos') }}"><b>Unidad De Ovinos</b></a></li>
                                     </ul>
                                 </li>
-                                @guest
-                                @if (Route::has('login'))
+                               
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="{{ url('quienes') }}"><i style="margin-left:40px" class="fa-solid fa-users"></i> <br><b>Quienes Somos</b></a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link active" href="{{ route('login') }}"><i style="margin-left:40px" class="fa-sharp fa-solid fa-user"></i> <br><b>{{ __('Iniciar Sesion') }}</b></a>
                                 </li>
-                                @endif
 
-                                @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link active" href="{{ route('register') }}"><i style="margin-left:30px" class="fa-solid fa-user-plus"></i><br><b>{{ __('Registrarse') }}</b></a>
                                 </li>
-                                @endif
-                                @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                                @endguest
                             </ul>
                         </div>
                 </div>
@@ -96,9 +77,7 @@
             <br>
             <h1>Unidad De Cunicultura</h1>
             <br>
-            <p>Una unidad de cría de conejos para una granja generalmente se refiere a un área especializada de la
-                granja donde se crían conejos con el fin de criar y producir crías. <br> Los conejos se crían por su
-                carne, pelaje o como mascotas, y pueden ser una importante fuente de ingresos para la granja. </p>
+            <p>En la unidad de cunicultura, se tienen 24 conejos, de los cuales 4 son machos, 20 son hembras y hay 8 crías. Entre las razas se encuentran 5 Nuevas Landa, 5 Chinchilla Ruso, 5 Californiano y 5 Mariposa. La instructora Sandra Forero y los aprendices en proceso lectivo y pasantes se encargan del cuidado de esta unidad.</p>
         </div>
         <div class="derecha"></div>
     </section>

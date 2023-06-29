@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card"  style="border: 3px ridge white">
                 <div class="card-header">{{ __('Registro De Semovientes') }}</div>
 
                 <div class="card-body">
@@ -13,12 +13,12 @@
                         @csrf
                         @method('PUT')
                         <div class="row mb-3">
-                            <label for="Codigo_semoviente" class="col-md-4 col-form-label text-md-end">{{ __('Codigo Del Semoviente') }}</label>
+                            <label for="Placa_inventario" class="col-md-4 col-form-label text-md-end">{{ __('Placa De Inventario') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Codigo_semoviente" type="number" min="0" value="{{ $semoviente['Codigo_semoviente']}}" class="form-control @error('Codigo_semoviente') is-invalid @enderror" name="Codigo_semoviente" value="{{ old('Codigo_semoviente') }}" required autocomplete="Codigo_semoviente">
+                                <input id="Placa_inventario" type="number" readonly min="0" value="{{ $semoviente['Placa_inventario']}}" class="form-control @error('Placa_inventario') is-invalid @enderror" name="Placa_inventario" value="{{ old('Placa_inventario') }}" required autocomplete="Placa_inventario">
 
-                                @error('Codigo_semoviente')
+                                @error('Placa_inventario')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -31,7 +31,7 @@
                                 <select class="form-select" name="Id_unidad" aria-label="Default select example">
                                     @foreach($unidad as $Unidad)
                                     <option value="{{$Unidad['Id_unidad']}}" {{$Unidad['Id_unidad'] == $semoviente['Id_unidad'] ? "selected" : "" }}>
-                                        {{$Unidad['Codigo_unidad'].' --- '.$Unidad['Nom_unidad']}}
+                                        {{$Unidad['Nom_unidad']}}
                                     </option>
                                     @endforeach
                                 </select>
@@ -64,7 +64,7 @@
                                 <select class="form-select" name="Id_raza" aria-label="Default select example">
                                     @foreach($raza as $Raza)
                                     <option value="{{$Raza['Id_raza']}}" {{$Raza['Id_raza'] == $semoviente['Id_raza'] ? "selected" : "" }}>
-                                        {{$Raza['Codigo_raza'].' --- '.$Raza['Nom_raza']}}
+                                        {{$Raza['Nom_raza']}}
                                     </option>
                                     @endforeach
                                 </select>
@@ -84,6 +84,10 @@
                                     <option value="{{ $semoviente['Tipo_semoviente']}}" selected>{{ $semoviente['Tipo_semoviente']}}</option>
                                     <option value="Reproductor">Reproductor</option>
                                     <option value="Lactante">Lactante</option>
+                                    <option value="Levante">Levante</option>
+                                    <option value="Ceba">Ceba</option>
+                                    <option value="Hembra en etapa de reproducción">Hembra en etapa de reproducción</option>
+                                    <option value="Hembra de vientre">Hembra de vientre</option>
                                 </select>
                                 @error('Tipo_semoviente')
                                 <span class="invalid-feedback" role="alert">
@@ -134,19 +138,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="Placa_inventario" class="col-md-4 col-form-label text-md-end">{{ __('Placa De Inventario') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="Placa_inventario" type="number" min="0" value="{{ $semoviente['Placa_inventario']}}" class="form-control @error('Placa_inventario') is-invalid @enderror" name="Placa_inventario" value="{{ old('Placa_inventario') }}" required autocomplete="Placa_inventario">
-
-                                @error('Placa_inventario')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
+                     
                         <div class="row mb-3">
                             <label for="Fech_ingreso" class="col-md-4 col-form-label text-md-end">{{ __('Fecha De Ingreso') }}</label>
 
@@ -168,7 +160,7 @@
                                     <option value="{{ $semoviente['Tipo_ingreso']}}" selected>{{ $semoviente['Tipo_ingreso']}}</option>
                                     <option value="Nacimiento">Nacimiento</option>
                                     <option value="Compra">Compra</option>
-                                    <option value="Obsequio">Obsequio</option>
+                                    <option value="Donación">Donación</option>
                                 </select>
 
                                 @error('Tipo_ingreso')

@@ -26,13 +26,13 @@ p {
 
 .derecha {
     margin-top: 32px;
-    background: url("../img/Granja.jpg");
+    background: url("../img/img1.jpg");
     background-size:cover;
     background-position: center;
     border-radius: 50%;
     width: 37%;
     height: 74.4vh;
-    border: 7px ridge white;
+    border: 5px ridge white;
     margin-left: 40px;
     margin-bottom: 25px;
 }

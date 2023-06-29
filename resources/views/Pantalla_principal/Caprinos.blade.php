@@ -51,36 +51,17 @@
                                         <li><a class="dropdown-item" href="{{ url('ovinos') }}"><b>Unidad De Ovinos</b></a></li>
                                     </ul>
                                 </li>
-                                @guest
-                                @if (Route::has('login'))
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="{{ url('quienes') }}"><i style="margin-left:40px" class="fa-solid fa-users"></i> <br><b>Quienes Somos</b></a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link active" href="{{ route('login') }}"><i style="margin-left:40px" class="fa-sharp fa-solid fa-user"></i> <br><b>{{ __('Iniciar Sesion') }}</b></a>
                                 </li>
-                                @endif
 
-                                @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link active" href="{{ route('register') }}"><i style="margin-left:30px" class="fa-solid fa-user-plus"></i><br><b>{{ __('Registrarse') }}</b></a>
                                 </li>
-                                @endif
-                                @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                                @endguest
                             </ul>
                         </div>
                 </div>
@@ -95,9 +76,7 @@
             <br>
             <h1>Unidad De Caprinos</h1>
             <br>
-            <p>Una unidad de cabras para una granja generalmente se refiere a un grupo de cabras que se manejan y crían
-                juntas como un solo rebaño. <br> Las cabras son conocidas por su resistencia y adaptabilidad, y pueden
-                proporcionar leche, carne y fibra para la producción agrícola.</p>
+            <p>En la unidad de caprinos, actualmente hay 37 cabras adultas, de las cuales 14 son de raza bóer y 23 son de raza alpina. Además, se cuenta con 3 reproductores, 2 alpinos y 1 bóer, así como 4 alpinas en etapa de levante. En total, la unidad cuenta con 45 semovientes distribuidos en 6 apriscos.</p>
         </div>
         <div class="derecha"></div>
     </section>

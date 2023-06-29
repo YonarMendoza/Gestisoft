@@ -13,20 +13,6 @@
                         @csrf
                         @method('PUT')
                         <div class="row mb-3">
-                            <label for="Codigo_unidad" class="col-md-4 col-form-label text-md-end">{{ __('Codigo De La Unidad') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="Codigo_unidad" type="number" min="0" value="{{ $unidad['Codigo_unidad']}}" class="form-control @error('Codigo_unidad') is-invalid @enderror" name="Codigo_unidad" value="{{ old('Codigo_unidad') }}" required autocomplete="Codigo_unidad">
-
-                                @error('Codigo_unidad')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
                             <label for="Nom_unidad" class="col-md-4 col-form-label text-md-end">{{ __('Nombre De La Unidad') }}</label>
 
                             <div class="col-md-6">

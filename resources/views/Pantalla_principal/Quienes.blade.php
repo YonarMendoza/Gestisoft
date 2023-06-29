@@ -2,13 +2,13 @@
 <html lang="es">
 
 <head>
-    <meta charset="utf-8">
+<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ asset('img/aaa.ico')}}" type="image/x-icon">
     <!-- CSRF Token -->
     <title>Gestisoft</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{ asset('css/Ganaderia.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/Integrantes.css')}}">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <script src="https://kit.fontawesome.com/17405db9f0.js" crossorigin="anonymous"></script>
@@ -37,7 +37,7 @@
                     <ul class="navbar-nav ms-auto">
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item">
+                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="{{ url('http://127.0.0.1:8000/') }}"><i style="margin-left:10px" class="fa-solid fa-house"></i><br><b>Inicio</b></a>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -51,14 +51,13 @@
                                         <li><a class="dropdown-item" href="{{ url('ovinos') }}"><b>Unidad De Ovinos</b></a></li>
                                     </ul>
                                 </li>
-                                
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="{{ url('quienes') }}"><i style="margin-left:40px" class="fa-solid fa-users"></i> <br><b>Quienes Somos</b></a>
+                                    <a class="nav-link active" href="{{ url('quienes') }}"><i style="margin-left:40px"  class="fa-solid fa-users"></i> <br><b>Quienes Somos</b></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link active" href="{{ route('login') }}"><i style="margin-left:40px" class="fa-sharp fa-solid fa-user"></i> <br><b>{{ __('Iniciar Sesion') }}</b></a>
                                 </li>
-
+                              
                                 <li class="nav-item">
                                     <a class="nav-link active" href="{{ route('register') }}"><i style="margin-left:30px" class="fa-solid fa-user-plus"></i><br><b>{{ __('Registrarse') }}</b></a>
                                 </li>
@@ -67,19 +66,33 @@
                 </div>
         </nav>
 
+
         <main class="py-4">
             @yield('content')
         </main>
     </div>
-    <section id="pantalla-dividida">
-        <div class="izquierda">
-            <br>
-            <h1>Unidad De Ganaderia</h1>
-            <br>
-            <p>la unidad de ganadería cuenta con 41 semovientes, incluyendo 5 vacas de producción, 4 toros, 17 terneros y 3 novillas de vientre. La instructora Sandra Forero y los aprendices en proceso lectivo y pasantes son responsables del manejo de esta unidad.</p>
-        </div>
-        <div class="derecha"></div>
-    </section>
+    <main>
+        <section>
+            <img  src="{{ asset('img/aaa.png')}}" alt="Person 1">
+            <h2>Yonar Estiber <br> Mendoza Cuellar</h2>
+            <p>Rol: Analista y Desarrollador</p>
+        </section>
+        <section>
+            <img src="{{ asset('img/Laura.jpg')}}" alt="Person 2">
+            <h2>Laura Valentina Manchola Parra</h2>
+            <p>Rol: Analista y Desarrolladora</p>
+        </section>
+        <section style="margin-left: -20px;">
+            <img src="{{ asset('img/Leidy.jpg')}}" alt="Person 3">
+            <h2>Leidy Vanessa <br> Jara  Saez</h2>
+            <p>Rol: Analista y Desarrolladora</p>
+        </section>
+        <section style="margin-left: -10px;">
+            <img src="{{ asset('img/Carol.jpg')}}" alt="Person 2">
+            <h2>Carol Tatiana <br> Carrera Quintana</h2>
+            <p>Rol: Analista y Desarrolladora</p>
+        </section>
+    </main>
 </body>
 
 </html>

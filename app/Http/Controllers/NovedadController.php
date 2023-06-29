@@ -5,12 +5,47 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\NovedadModel;
 use App\Models\SemovienteModel;
+use Barryvdh\DomPDF\Facade\Pdf;
 class NovedadController extends Controller
 {
     public function index(){
         $Novedad = NovedadModel::all();
         $Semoviente = SemovienteModel::all();
         return view("paginas.Novedad", array("Novedad" => $Novedad,"Semoviente" => $Semoviente));
+
+    }
+    public function contarNovedades()
+    {
+        $cantidadNovedades = NovedadModel::count();
+        return $cantidadNovedades;
+    }
+    public function pdf(){
+        $Novedad = NovedadModel::all();
+        $pdf = Pdf::loadView('pdf.novedadpdf',array("Novedad" => $Novedad), compact('Novedad'));
+        return $pdf->download('Gestisoft_Novedades.pdf');
+
+    }
+    public function centroNovedadBuscar($textoNovedad, Request $request){
+        if($request -> ajax()){
+            if($textoNovedad == "-"){
+                $centroNovedad = NovedadModel::join('semovientes', 'novedad.Id_semoviente', '=', 'semovientes.Id_semoviente')
+                ->get();
+
+                return $centroNovedad;
+            }
+        else{        
+
+            $centroNovedad = NovedadModel::where('Nom_novedad','like','%'.$textoNovedad.'%')
+            ->orWhere('Codigo_novedad','like','%'.$textoNovedad.'%')
+            ->orWhere('Fech_novedad','like','%'.$textoNovedad.'%')
+            ->orWhere('Nom_semoviente','like','%'.$textoNovedad.'%')
+            ->orWhere('Descripcion','like','%'.$textoNovedad.'%')
+            ->orWhere('Responsable','like','%'.$textoNovedad.'%')
+            ->join('semovientes', 'novedad.Id_semoviente', '=', 'semovientes.Id_semoviente')
+            ->get();
+            return $centroNovedad;
+        }
+    }
 
     }
 

@@ -19,7 +19,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::get('/generar-pdf/{Nom_unidad}',[App\Http\Controllers\semovientePDFController::class, 'generarPDF'])->name('generar-pdf');
+Route::get('/raza/pdf', [App\Http\Controllers\RazaController::class, 'pdf'])->name('razapdf');
+Route::get('/unidad/pdf', [App\Http\Controllers\UnidadController::class, 'pdf'])->name('unidadpdf');
+// Route::get('/semoviente/pdf', [App\Http\Controllers\SemovienteController::class, 'pdf'])->name('semovientepdf');
+Route::get('/novedad/pdf', [App\Http\Controllers\NovedadController::class, 'pdf'])->name('novedadpdf');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/raza', App\Http\Controllers\RazaController::class);
 Route::get('/agregarRaza', [App\Http\Controllers\RazaController::class, 'agregar']);
@@ -29,8 +33,6 @@ Route::resource('/semoviente', App\Http\Controllers\SemovienteController::class)
 Route::get('/agregarSemoviente', [App\Http\Controllers\SemovienteController::class, 'agregar']);
 Route::resource('/novedad', App\Http\Controllers\NovedadController::class);
 Route::get('/agregarNovedad', [App\Http\Controllers\NovedadController::class, 'agregar']);
-Route::resource('/mortalidad', App\Http\Controllers\MortalidadController::class);
-Route::get('/agregarMortalidad', [App\Http\Controllers\MortalidadController::class, 'agregar']);
 Route::get('/centroRazaBuscar/{cadena}', [App\Http\Controllers\RazaController::class,'centroRazaBuscar']);
 Route::resource('/index', App\Http\Controllers\IndexController::class);
 Route::resource('/caprinos', App\Http\Controllers\CaprinosController::class);
@@ -38,3 +40,11 @@ Route::resource('/cunicultura', App\Http\Controllers\CuniculturaController::clas
 Route::resource('/ganaderia', App\Http\Controllers\GanaderiaController::class);
 Route::resource('/ovinos', App\Http\Controllers\OvinosController::class);
 Route::get('/centroUnidadBuscar/{cadena}', [App\Http\Controllers\UnidadController::class,'centroUnidadBuscar']);
+Route::resource('/quienes', App\Http\Controllers\QuienessomosController::class);
+Route::get('/centroSemovienteBuscar/{cadena}', [App\Http\Controllers\SemovienteController::class,'centroSemovienteBuscar']);
+Route::get('/centroNovedadBuscar/{cadena}', [App\Http\Controllers\NovedadController::class,'centroNovedadBuscar']);
+Route::get('/contarRazas', [App\Http\Controllers\RazaController::class, 'contarRazas']);
+Route::get('/contarUnidades', [App\Http\Controllers\UnidadController::class, 'contarUnidades']);
+Route::get('/contarSemovientes', [App\Http\Controllers\SemovienteController::class, 'contarSemovientes']);
+Route::get('/contarNovedades', [App\Http\Controllers\NovedadController::class, 'contarNovedades']);
+Route::put('/cambiarEstadoSemoviente', [App\Http\Controllers\SemovienteController::class, 'cambiarEstadoSemoviente']);

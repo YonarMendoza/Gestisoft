@@ -16,11 +16,15 @@
     <script src="https://kit.fontawesome.com/17405db9f0.js" crossorigin="anonymous"></script>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    
 </head>
 
-<body>
+<body style="background: rgba(1, 1, 1, 1.0);
+                background: linear-gradient(315deg, rgba(1, 1, 1, 1.0), rgba(6, 118, 43, 1.0));
+                background-repeat: no-repeat;min-height: 100vh;">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm " style="font-size: 15.7px;">
             <div class="container">
                 <a style="margin-left: -80px;" class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('img/aaa.png')}}" style="width: 100px;height: 100px">
@@ -37,73 +41,73 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <!-- Gestionar Razas -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('img/Conejo1.png') }}" style="width: 20px;margin-left:20px" alt="Icono SVG"><br>Gestionar <br> Razas
+                            <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{ asset('img/Conejo1.png') }}" style="width: 20px;margin-left:20px" alt="Icono SVG"><b> <br>Gestionar <br> Razas</b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ url('agregarRaza') }}">Registrar raza</a></li>
-                                <li><a class="dropdown-item" href="{{ url('raza') }}">Consultar raza</a></li>
+                                <li><a class="dropdown-item" href="{{ url('agregarRaza') }}"><b> Registrar raza</b></a></li>
+                                <li><a class="dropdown-item" href="{{ url('raza') }}"><b> Consultar raza</b></a></li>
                             </ul>
                         </li>
+
+                        <!-- Gestionar Unidades -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('img/cerro.png') }}" style="width: 20px;margin-left:20px" alt="Icono SVG"><br>Gestionar <br> Unidades
+                            <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{ asset('img/cerro.png') }}" style="width: 20px;margin-left:20px" alt="Icono SVG"><b> <br>Gestionar <br> Unidades</b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ url('agregarUnidad') }}">Registrar Unidad</a></li>
-                                <li><a class="dropdown-item" href="{{ url('unidad') }}">Consultar Unidad</a></li>
+                                <li><a class="dropdown-item" href="{{ url('agregarUnidad') }}"><b> Registrar Unidad</b></a></li>
+                                <li><a class="dropdown-item" href="{{ url('unidad') }}"><b> Consultar Unidad</b></a></li>
                             </ul>
                         </li>
+
+                        <!-- Gestionar Semovientes -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('img/Cabra1.webp') }}" style="width: 20px;margin-left:15px" alt="Icono SVG"><br>Gestionar <br> Semovientes
+                            <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{ asset('img/Cabra1.webp') }}" style="width: 20px;margin-left:15px" alt="Icono SVG"><b> <br>Gestionar <br> Semovientes</b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ url('agregarSemoviente') }}">Registrar Semoviente</a></li>
-                                <li><a class="dropdown-item" href="{{ url('semoviente') }}">Consultar Semoviente</a></li>
+                                <li><a class="dropdown-item" href="{{ url('agregarSemoviente') }}"><b> Registrar Semoviente</b></a></li>
+                                <li><a class="dropdown-item" href="{{ url('semoviente') }}"><b> Consultar Semoviente</b></a></li>
                             </ul>
                         </li>
+
+                        <!-- Gestionar Novedades -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('img/alarma.png') }}" style="width: 20px;margin-left:20px" alt="Icono SVG"><br> Gestionar <br> Novedades
+                            <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{ asset('img/alarma.png') }}" style="width: 20px;margin-left:20px" alt="Icono SVG"><b> <br> Gestionar <br> Novedades</b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ url('agregarNovedad') }}">Registrar Novedad</a></li>
-                                <li><a class="dropdown-item" href="{{ url('novedad') }}">Consultar Novedad</a></li>
+                                <li><a class="dropdown-item" href="{{ url('agregarNovedad') }}"><b> Registrar Novedad</b></a></li>
+                                <li><a class="dropdown-item" href="{{ url('novedad') }}"><b> Consultar Novedad</b></a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('img/craneo-de-toro.png') }}" style="width: 25px;margin-left:20px" alt="Icono SVG"><br> Gestionar <br> Mortalidades
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ url('agregarMortalidad') }}">Registrar Mortalidad</a></li>
-                                <li><a class="dropdown-item" href="{{ url('mortalidad') }}">Consultar Mortalidad</a></li>
-                            </ul>
-                        </li>
+
+                        <!-- Autenticación -->
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesion') }}</a>
+                            <a class="nav-link active" href="{{ route('login') }}">{{ __('Iniciar Sesion') }}</a>
                         </li>
                         @endif
 
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
+                            <a class="nav-link active" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                         </li>
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i style="margin-left: 17px;" class="fa-solid fa-user-xmark"></i> <br> {{ Auth::user()->name }}
+                            <a id="navbarDropdown" class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <i style="margin-left: 17px;" class="fa-solid fa-user-xmark"></i><b> <br> {{ Auth::user()->name }}</b>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    Cerrar Sesion
+                                    <b> Cerrar Sesion</b>
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
