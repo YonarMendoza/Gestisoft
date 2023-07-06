@@ -48,10 +48,10 @@ $fecha = Carbon::now('America/Bogota')->format('Y-m-d H:i:s A');
             <thead>
                 <tr>
                     <th scope="col">N° Registros</th>
-                    <th scope="col">Codigo Novedad</th>
                     <th scope="col">Fecha Novedad</th>
                     <th scope="col">Nombre Novedad</th>
                     <th scope="col">Nombre Semoviente</th>
+                    <th scope="col">Placa Inventario</th>
                     <th scope="col">Descripción</th>
                     <th scope="col">Responsable</th>
                 </tr>
@@ -67,12 +67,12 @@ $fecha = Carbon::now('America/Bogota')->format('Y-m-d H:i:s A');
                 @endphp
                 <tr>
                     <td>{{ $contador }}</td>
-                    <td>{{$novedad['Codigo_novedad']}}</td>
                     <td>{{$novedad['Fech_novedad']}}</td>
                     <td>{{$novedad['Nom_novedad']}}</td>
                     <td>{{$novedad->semoviente['Nom_semoviente']}}</td>
+                    <td>{{$novedad->semoviente['Placa_inventario']}}</td>
                     <td>{{$novedad['Descripcion']}}</td>
-                    <td>{{$novedad['Responsable']}}</td>
+                    <td>{{$novedad->responsable['Nom_responsable']}}</td>
                 </tr>
 
                 @endforeach

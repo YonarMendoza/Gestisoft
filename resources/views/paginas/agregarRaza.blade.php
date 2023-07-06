@@ -1,3 +1,5 @@
+@if (Auth::check() && Auth::user()->name)
+@if (Auth::check() && Auth::user()->Tipo_usuario == 'Instructor' || Auth::user()->Tipo_usuario =='Pasante')
 @extends('layouts.app')
 
 @section('content')
@@ -28,7 +30,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button style="margin-left: 80px;" type="submit" class="btn btn-success">
+                                <button style="margin-left: 80px;" type="submit" class="btn btn-success" v-on:click="Guardarregistro()">
                                     <i class="fa-sharp fa-solid fa-floppy-disk"></i>
                                 </button>
                             </div>
@@ -40,3 +42,5 @@
     </div>
 </div>
 @endsection
+@endif
+@endif

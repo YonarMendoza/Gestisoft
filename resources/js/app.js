@@ -6,6 +6,7 @@
 
 import "./bootstrap";
 import { createApp } from "vue";
+import Swal from 'sweetalert2';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -16,6 +17,8 @@ const consultaCantidadRazas = "http://127.0.0.1:8000/contarRazas";
 const consultaCantidadUnidades = "http://127.0.0.1:8000/contarUnidades";
 const consultaCantidadSemovientes = "http://127.0.0.1:8000/contarSemovientes";
 const consultaCantidadNovedades = "http://127.0.0.1:8000/contarNovedades";
+const consultaCantidadUsuarios = "http://127.0.0.1:8000/contarUsuarios";
+const consultaCantidadResponsables = "http://127.0.0.1:8000/contarResponsables";
 const app = createApp({
     data() {
         return {
@@ -27,13 +30,20 @@ const app = createApp({
             centroSemoviente: [],
             textoNovedad: "",
             centroNovedad: [],
+            textoUsuario: '',
+            centroUsuario: [],
+            textoResponsable: "",
+            centroResponsable: [],
+            totalUsuarios: 0,
+            usuariosPagina: 3,
+            totalResponsables: 0,
+            responsablesPagina: 3,
             totalRazas: 0,
             razasPagina: 3,
             totalUnidades: 0,
             unidadesPagina: 3,
             totalSemovientes: 0,
             semovientesPagina: 3,
-            //desde
             totalNovedades: 0,
             novedadesPagina: 3,
             paginas: "",
@@ -43,29 +53,135 @@ const app = createApp({
             ocultarMostrarAnterior: "",
             ocultarMostrarSiguiente: "",
             botones: [],
-            //hasta
         };
     },
     methods: {
-        eliminarRaza(Id_raza) {
-            //Recibir como parámetro el id del aprendiz
-
-            var eliminar = confirm(
-                "¿Está seguro que quiere eliminar el registro?"
-            ); //Preguntar si quiere eliminar
-
-            if (eliminar == true) {
-                //axios es la libreria que viene instalada con Laravel para las peticiones de tipo ajax
-                //para eliminar un dato se utiliza la funcion delete de axios y se pasa como argumento
-                //la ruta creada para el contralador + el identificador del aprendiz
-                axios
-                    .delete("http://127.0.0.1:8000/raza/" + Id_raza)
-                    .then((respuesta) => {
-                        //Se imprime la respuesta de la peticion
+        eliminarRaza(id_raza) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                  confirmButton: 'btn btn-success',
+                  cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+              });
+              
+              swalWithBootstrapButtons.fire({
+                title: '¿Está seguro que quiere eliminar el registro?',
+                text: "¡No podrá revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  swalWithBootstrapButtons.fire(
+                    '¡Eliminado!',
+                    'Su registro ha sido eliminado.',
+                    'success'
+                  ).then(() => {
+                    axios
+                      .delete(`http://127.0.0.1:8000/raza/${id_raza}`)
+                      .then((respuesta) => {
                         console.log(respuesta.data);
-                        //Se direcciona para que vuelva a cargar los aprendices que quedaron
                         window.location.href = "http://127.0.0.1:8000/raza/";
+                      });
+                  });
+                } else if (
+                  result.dismiss === Swal.DismissReason.cancel
+                ) {
+                  swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'Su registro esta seguro',
+                    'error'
+                  );
+                }
+              });
+        },
+        Guardarregistro() {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Su Registro Ha Sido Guardado',
+                showConfirmButton: false,
+                timer: 1500
+              })
+        },
+        Editarregistro() {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Su Registro Ha Sido Actualizado',
+                showConfirmButton: false,
+                timer: 1500
+              })
+        },
+        eliminarResponsable(id_responsable) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                  confirmButton: 'btn btn-success',
+                  cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+              });
+              
+              swalWithBootstrapButtons.fire({
+                title: '¿Está seguro que quiere eliminar el registro?',
+                text: "¡No podrá revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  swalWithBootstrapButtons.fire(
+                    '¡Eliminado!',
+                    'Su registro ha sido eliminado.',
+                    'success'
+                  ).then(() => {
+                    axios
+                      .delete(`http://127.0.0.1:8000/responsable/${id_responsable}`)
+                      .then((respuesta) => {
+                        console.log(respuesta.data);
+                        window.location.href = "http://127.0.0.1:8000/responsable/";
+                      });
+                  });
+                } else if (
+                  result.dismiss === Swal.DismissReason.cancel
+                ) {
+                  swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'Su registro esta seguro',
+                    'error'
+                  );
+                }
+              });
+          },
+
+        buscarResponsable() {
+            if (this.textoResponsable.length > 0) {
+                axios
+                    .get(
+                        "http://127.0.0.1:8000/centroResponsableBuscar/" +
+                        this.textoResponsable
+                    )
+                    .then((respuesta) => {
+                        this.centroResponsable = respuesta.data;
                     });
+                this.consultaNumeroResponsables();
+                this.paginar5(this.paginaActual);
+                return this.centroResponsable;
+            } else {
+                console.log("Esta buscando todo");
+                axios
+                    .get("http://127.0.0.1:8000/centroResponsableBuscar/-")
+                    .then((respuesta) => {
+                        this.centroResponsable = respuesta.data;
+                    });
+                this.consultaNumeroResponsables();
+                this.paginar5(this.paginaActual);
+                return this.centroResponsable;
             }
         },
         buscarRaza() {
@@ -73,7 +189,7 @@ const app = createApp({
                 axios
                     .get(
                         "http://127.0.0.1:8000/centroRazaBuscar/" +
-                            this.textoRaza
+                        this.textoRaza
                     )
                     .then((respuesta) => {
                         this.centroRaza = respuesta.data;
@@ -93,11 +209,84 @@ const app = createApp({
                 return this.centroRaza;
             }
         },
+        eliminarUsuario(id) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                  confirmButton: 'btn btn-success',
+                  cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+              });
+              
+              swalWithBootstrapButtons.fire({
+                title: '¿Está seguro que quiere eliminar el registro?',
+                text: "¡No podrá revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  swalWithBootstrapButtons.fire(
+                    '¡Eliminado!',
+                    'Su registro ha sido eliminado.',
+                    'success'
+                  ).then(() => {
+                    axios
+                      .delete(`http://127.0.0.1:8000/usuarios/${id}`)
+                      .then((respuesta) => {
+                        console.log(respuesta.data);
+                        window.location.href = "http://127.0.0.1:8000/usuarios/";
+                      });
+                  });
+                } else if (
+                  result.dismiss === Swal.DismissReason.cancel
+                ) {
+                  swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'Su registro esta seguro',
+                    'error'
+                  );
+                }
+              });
+        },
+        buscarUsuario() {
+            if (this.textoUsuario.length > 0) {
+                axios
+                    .get(
+                        "http://127.0.0.1:8000/centroUsuarioBuscar/" +
+                        this.textoUsuario
+                    )
+                    .then((respuesta) => {
+                        this.centroUsuario = respuesta.data;
+                    });
+                this.consultaNumeroUsuarios();
+                this.paginar(this.paginaActual);
+                return this.centroUsuario;
+            } else {
+                console.log("Esta buscando todo");
+                axios
+                    .get("http://127.0.0.1:8000/centroUsuarioBuscar/-")
+                    .then((respuesta) => {
+                        this.centroUsuario = respuesta.data;
+                    });
+                this.consultaNumeroUsuarios();
+                this.paginar(this.paginaActual);
+                return this.centroUsuario;
+            }
+        },
         //desde
         consultaNumeroRazas() {
             axios.get(consultaCantidadRazas).then((respuesta) => {
                 this.totalRazas = respuesta.data;
                 this.paginas = Math.ceil(this.totalRazas / this.razasPagina);
+            });
+        },
+        consultaNumeroUsuarios() {
+            axios.get(consultaCantidadUsuarios).then((respuesta) => {
+                this.totalUsuarios = respuesta.data;
+                this.paginas = Math.ceil(this.totalUsuarios / this.usuariosPagina);
             });
         },
         //hasta
@@ -122,6 +311,14 @@ const app = createApp({
                 this.totalNovedades = respuesta.data;
                 this.paginas = Math.ceil(
                     this.totalNovedades / this.novedadesPagina
+                );
+            });
+        },
+        consultaNumeroResponsables() {
+            axios.get(consultaCantidadResponsables).then((respuesta) => {
+                this.totalResponsables = respuesta.data;
+                this.paginas = Math.ceil(
+                    this.totalResponsables / this.responsablesPagina
                 );
             });
         },
@@ -219,6 +416,52 @@ const app = createApp({
                 }
             }
         },
+        paginar4(pagina) {
+            this.paginaActual = pagina;
+            this.desde = (this.paginaActual - 1) * this.usuariosPagina;
+            this.hasta = this.paginaActual * this.usuariosPagina;
+
+            if (this.paginaActual == 1) {
+                this.ocultarMostrarAnterior = "page-item disabled";
+            } else {
+                this.ocultarMostrarAnterior = "page-item";
+            }
+            if (this.paginaActual == this.paginas) {
+                this.ocultarMostrarSiguiente = "page-item disabled";
+            } else {
+                this.ocultarMostrarSiguiente = "page-item";
+            }
+            for (var i = 0; i <= this.paginas; i++) {
+                if (i + 1 == this.paginaActual) {
+                    this.botones[i] = "page-item active";
+                } else {
+                    this.botones[i] = "page-item";
+                }
+            }
+        },
+        paginar5(pagina) {
+            this.paginaActual = pagina;
+            this.desde = (this.paginaActual - 1) * this.responsablesPagina;
+            this.hasta = this.paginaActual * this.responsablesPagina;
+
+            if (this.paginaActual == 1) {
+                this.ocultarMostrarAnterior = "page-item disabled";
+            } else {
+                this.ocultarMostrarAnterior = "page-item";
+            }
+            if (this.paginaActual == this.paginas) {
+                this.ocultarMostrarSiguiente = "page-item disabled";
+            } else {
+                this.ocultarMostrarSiguiente = "page-item";
+            }
+            for (var i = 0; i <= this.paginas; i++) {
+                if (i + 1 == this.paginaActual) {
+                    this.botones[i] = "page-item active";
+                } else {
+                    this.botones[i] = "page-item";
+                }
+            }
+        },
         //desde
         anterior() {
             this.paginaActual = this.paginaActual - 1;
@@ -253,33 +496,70 @@ const app = createApp({
             this.paginaActual = this.paginaActual + 1;
             this.paginar3(this.paginaActual);
         },
-        eliminarUnidad(Id_unidad) {
-            //Recibir como parámetro el id del aprendiz
-
-            var eliminar = confirm(
-                "¿Está seguro que quiere eliminar el registro?"
-            ); //Preguntar si quiere eliminar
-
-            if (eliminar == true) {
-                //axios es la libreria que viene instalada con Laravel para las peticiones de tipo ajax
-                //para eliminar un dato se utiliza la funcion delete de axios y se pasa como argumento
-                //la ruta creada para el contralador + el identificador del aprendiz
-                axios
-                    .delete("http://127.0.0.1:8000/unidad/" + Id_unidad)
-                    .then((respuesta) => {
-                        //Se imprime la respuesta de la peticion
+        anterior4() {
+            this.paginaActual = this.paginaActual - 1;
+            this.paginar4(this.paginaActual);
+        },
+        siguiente4() {
+            this.paginaActual = this.paginaActual + 1;
+            this.paginar4(this.paginaActual);
+        },
+        anterior5() {
+            this.paginaActual = this.paginaActual - 1;
+            this.paginar4(this.paginaActual);
+        },
+        siguiente5() {
+            this.paginaActual = this.paginaActual + 1;
+            this.paginar4(this.paginaActual);
+        },
+        eliminarUnidad(id_unidad) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                  confirmButton: 'btn btn-success',
+                  cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+              });
+              
+              swalWithBootstrapButtons.fire({
+                title: '¿Está seguro que quiere eliminar el registro?',
+                text: "¡No podrá revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  swalWithBootstrapButtons.fire(
+                    '¡Eliminado!',
+                    'Su registro ha sido eliminado.',
+                    'success'
+                  ).then(() => {
+                    axios
+                      .delete(`http://127.0.0.1:8000/unidad/${id_unidad}`)
+                      .then((respuesta) => {
                         console.log(respuesta.data);
-                        //Se direcciona para que vuelva a cargar los aprendices que quedaron
                         window.location.href = "http://127.0.0.1:8000/unidad/";
-                    });
-            }
+                      });
+                  });
+                } else if (
+                  result.dismiss === Swal.DismissReason.cancel
+                ) {
+                  swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'Su registro esta seguro',
+                    'error'
+                  );
+                }
+              });
         },
         buscarUnidad() {
             if (this.textoUnidad.length > 0) {
                 axios
                     .get(
                         "http://127.0.0.1:8000/centroUnidadBuscar/" +
-                            this.textoUnidad
+                        this.textoUnidad
                     )
                     .then((respuesta) => {
                         this.centroUnidad = respuesta.data;
@@ -303,34 +583,54 @@ const app = createApp({
                 //hasta
             }
         },
-        eliminarSemoviente(Id_semoviente) {
-            //Recibir como parámetro el id del aprendiz
-
-            var eliminar = confirm(
-                "¿Está seguro que quiere eliminar el registro?"
-            ); //Preguntar si quiere eliminar
-
-            if (eliminar == true) {
-                //axios es la libreria que viene instalada con Laravel para las peticiones de tipo ajax
-                //para eliminar un dato se utiliza la funcion delete de axios y se pasa como argumento
-                //la ruta creada para el contralador + el identificador del aprendiz
-                axios
-                    .delete("http://127.0.0.1:8000/semoviente/" + Id_semoviente)
-                    .then((respuesta) => {
-                        //Se imprime la respuesta de la peticion
+        eliminarSemoviente(id_semoviente) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                  confirmButton: 'btn btn-success',
+                  cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+              });
+              
+              swalWithBootstrapButtons.fire({
+                title: '¿Está seguro que quiere eliminar el registro?',
+                text: "¡No podrá revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  swalWithBootstrapButtons.fire(
+                    '¡Eliminado!',
+                    'Su registro ha sido eliminado.',
+                    'success'
+                  ).then(() => {
+                    axios
+                      .delete(`http://127.0.0.1:8000/semoviente/${id_semoviente}`)
+                      .then((respuesta) => {
                         console.log(respuesta.data);
-                        //Se direcciona para que vuelva a cargar los aprendices que quedaron
-                        window.location.href =
-                            "http://127.0.0.1:8000/semoviente/";
-                    });
-            }
+                        window.location.href = "http://127.0.0.1:8000/semoviente/";
+                      });
+                  });
+                } else if (
+                  result.dismiss === Swal.DismissReason.cancel
+                ) {
+                  swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'Su registro esta seguro',
+                    'error'
+                  );
+                }
+              });
         },
         buscarSemoviente() {
             if (this.textoSemoviente.length > 0) {
                 axios
                     .get(
                         "http://127.0.0.1:8000/centroSemovienteBuscar/" +
-                            this.textoSemoviente
+                        this.textoSemoviente
                     )
                     .then((respuesta) => {
                         this.centroSemoviente = respuesta.data;
@@ -350,38 +650,59 @@ const app = createApp({
                 return this.centroSemoviente;
             }
         },
-        activarDesactivarSemoviente(Id_semoviente,Activo){
-            axios.put('http://127.0.0.1:8000/cambiarEstadoSemoviente/',{'Id_semoviente': Id_semoviente, 'Activo': Activo}).then((respuesta)=>{
-                window.location.href="http://127.0.0.1:8000/semoviente"
+        activarDesactivarSemoviente(Id_semoviente, Activo) {
+            axios.put('http://127.0.0.1:8000/cambiarEstadoSemoviente/', { 'Id_semoviente': Id_semoviente, 'Activo': Activo }).then((respuesta) => {
+                window.location.href = "http://127.0.0.1:8000/semoviente"
             });
         },
-        eliminarNovedad(Id_novedad) {
-            //Recibir como parámetro el id del aprendiz
-
-            var eliminar = confirm(
-                "¿Está seguro que quiere eliminar el registro?"
-            ); //Preguntar si quiere eliminar
-
-            if (eliminar == true) {
-                //axios es la libreria que viene instalada con Laravel para las peticiones de tipo ajax
-                //para eliminar un dato se utiliza la funcion delete de axios y se pasa como argumento
-                //la ruta creada para el contralador + el identificador del aprendiz
-                axios
-                    .delete("http://127.0.0.1:8000/novedad/" + Id_novedad)
-                    .then((respuesta) => {
-                        //Se imprime la respuesta de la peticion
+        eliminarNovedad(id_novedad) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                  confirmButton: 'btn btn-success',
+                  cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+              });
+              
+              swalWithBootstrapButtons.fire({
+                title: '¿Está seguro que quiere eliminar el registro?',
+                text: "¡No podrá revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  swalWithBootstrapButtons.fire(
+                    '¡Eliminado!',
+                    'Su registro ha sido eliminado.',
+                    'success'
+                  ).then(() => {
+                    axios
+                      .delete(`http://127.0.0.1:8000/novedad/${id_novedad}`)
+                      .then((respuesta) => {
                         console.log(respuesta.data);
-                        //Se direcciona para que vuelva a cargar los aprendices que quedaron
                         window.location.href = "http://127.0.0.1:8000/novedad/";
-                    });
-            }
+                      });
+                  });
+                } else if (
+                  result.dismiss === Swal.DismissReason.cancel
+                ) {
+                  swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'Su registro esta seguro',
+                    'error'
+                  );
+                }
+              });
         },
         buscarNovedad() {
             if (this.textoNovedad.length > 0) {
                 axios
                     .get(
                         "http://127.0.0.1:8000/centroNovedadBuscar/" +
-                            this.textoNovedad
+                        this.textoNovedad
                     )
                     .then((respuesta) => {
                         this.centroNovedad = respuesta.data;
@@ -406,23 +727,4 @@ const app = createApp({
 
 import ExampleComponent from "./components/ExampleComponent.vue";
 app.component("example-component", ExampleComponent);
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
-//     app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
-// });
-
-/**
- * Finally, we will attach the application instance to a HTML element with
- * an "id" attribute of "app". This element is included with the "auth"
- * scaffolding. Otherwise, you will need to add an element yourself.
- */
-
 app.mount("#app");

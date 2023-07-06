@@ -1,3 +1,5 @@
+@if (Auth::check() && Auth::user()->name)
+@if (Auth::check() && Auth::user()->Tipo_usuario == 'Instructor' || Auth::user()->Tipo_usuario =='Pasante')
 @extends('layouts.app')
 
 @section('content')
@@ -12,19 +14,6 @@
                     <form method="POST" action="{{ url('/')}}/novedad/{{$novedad['Id_novedad']}}">
                         @csrf
                         @method('PUT')
-                        <div class="row mb-3">
-                            <label for="Fech_novedad" class="col-md-4 col-form-label text-md-end">{{ __('Codigo De La Novedad') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="Codigo_novedad" readonly type="number" min="0" value="{{ $novedad['Codigo_novedad']}}" class="form-control @error('Codigo_novedad') is-invalid @enderror" name="Codigo_novedad" value="{{ old('Codigo_novedad') }}" required autocomplete="Codigo_novedad">
-
-                                @error('Codigo_novedad')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
                         <div class="row mb-3">
                             <label for="Id_unidad" class="col-md-4 col-form-label text-md-end">{{ __('Fecha De La Novedad') }}</label>
                             <div class="col-md-6">
@@ -58,7 +47,7 @@
                                 <select class="form-select" name="Id_semoviente" aria-label="Default select example">
                                     @foreach($Semoviente as $semoviente)
                                     <option value="{{$semoviente['Id_semoviente']}}" {{$semoviente['Id_semoviente'] == $novedad['Id_semoviente'] ? "selected" : "" }}>
-                                        {{$semoviente['Codigo_semoviente'].' --- '.$semoviente['Nom_semoviente']}}
+                                        {{$semoviente['Placa_inventario'].' ➜ '.$semoviente['Nom_semoviente']}}
                                     </option>
                                     @endforeach
                                 </select>
@@ -83,12 +72,17 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="Responsable" class="col-md-4 col-form-label text-md-end">{{ __('Responsable') }}</label>
+                            <label for="Id_responsable" class="col-md-4 col-form-label text-md-end">{{ __('Responsable') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Responsable" type="text" value="{{ $novedad['Responsable']}}" class="form-control @error('Responsable') is-invalid @enderror" name="Responsable" value="{{ old('Responsable') }}" required autocomplete="Responsable">
-
-                                @error('Responsable')
+                                <select class="form-select" name="Id_responsable" aria-label="Default select example">
+                                    @foreach($responsable as $Responsable)
+                                    <option value="{{$Responsable['Id_responsable']}}" {{$Responsable['Id_responsable'] == $novedad['Id_responsable'] ? "selected" : "" }}>
+                                        {{$Responsable['Nom_responsable']}}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                @error('Id_responsable')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -97,7 +91,7 @@
                         </div>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button style="margin-left: 80px;" type="submit" class="btn btn-success">
+                                <button style="margin-left: 80px;" type="submit" class="btn btn-success" v-on:click="Editarregistro()">
                                     <i class="fa-sharp fa-solid fa-floppy-disk"></i>
                                 </button>
                             </div>
@@ -110,3 +104,5 @@
     </div>
 </div>
 @endsection
+@endif
+@endif

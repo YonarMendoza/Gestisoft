@@ -1,17 +1,19 @@
 @if (Auth::check() && Auth::user()->name)
-@if (Auth::check() && Auth::user()->Tipo_usuario == 'Instructor' || Auth::user()->Tipo_usuario =='Pasante'|| Auth::user()->Tipo_usuario =='Aprendiz')
+@if (Auth::check() && Auth::user()->Tipo_usuario == 'Instructor')
 @extends('layouts.app')
+
 @section('content')
 <div class="container">
+    <!-- Barra de búsqueda -->
     <div class="row g-3 align-items-center" style="margin-left: 230px;">
-        <div class="col-auto">
-            <label style="color: white;" for="inputPassword6" class="col-form-label">Buscar Novedad:</label>
+        <div class="col-auto" style="color: white;">
+            <label for="inputPassword6" class="col-form-label">Buscar Usuarios:</label>
         </div>
         <div class="col-auto">
-            <input type="text" class="form-control" placeholder="Ingrese Datos A Buscar" v-model="textoNovedad" v-on:keyup="buscarNovedad">
+            <input type="text" class="form-control" placeholder="Ingrese Datos A Buscar" v-model="textoUsuario" v-on:keyup="buscarUsuario">
         </div>
         <div class="col-auto">
-            <span v-if="centroNovedad.length == 0" class="btn btn-success" v-on:click="buscarNovedad">Todos</span>
+            <span v-if="centroUsuario.length == 0" class="btn btn-success" v-on:click="buscarUsuario">Todos</span>
         </div>
         <ul class="navbar-nav ms-auto" style="margin-top:-10px">
             <li class="nav-item dropdown" style="margin-left: 450px;margin-top:-30px">
@@ -19,7 +21,7 @@
                     <i class="fa-solid fa-file-pdf"></i> Generar PDF
                 </a>
                 <ul class="dropdown-menu">
-                    <li> <a class="dropdown-item" style="color: black;text-decoration: none;cursor: pointer" href="{{ url('novedad/pdf') }}">PDF De Novedades</a></li>
+                    <li> <a class="dropdown-item" style="color: black;text-decoration: none;cursor: pointer" href="{{ url('raza/pdf') }}">PDF De Razas</a></li>
                 </ul>
             </li>
         </ul>
@@ -28,12 +30,12 @@
     <br>
     <!-- <nav aria-label="page navegation example" style="margin-left: 500px;">
         <ul class="pagination">
-            <li v-bind:class="ocultarMostrarAnterior" v-on:click="anterior3" class="page-link" href="#" aria-label="previous">
+            <li v-bind:class="ocultarMostrarAnterior" v-on:click="anterior" class="page-link" href="#" aria-label="previous">
                 <span arial-hidden="true">&laquo;</span>
                 </a>
             </li>
             <li v-for="(pagina, index) in paginas" v-bind:class="botones[index]">
-                <a class="page-link" href="#" v-on:click="paginar3(pagina)">@{{pagina}}</a>
+                <a class="page-link" href="#" v-on:click="paginar(pagina)">@{{pagina}}</a>
             </li>
             <li v-if="paginas == 1" class="page-item disabled">
                 <a class="page-link" href="#" aria-label="Next">
@@ -41,25 +43,26 @@
                 </a>
             </li>
             <li v-else v-bind:class="ocultarMostrarSiguiente">
-                <a v-on:click="siguiente3" class="page-link" hfref="#" arial-label="Next">
+                <a v-on:click="siguiente" class="page-link" hfref="#" arial-label="Next">
                     <span arial-hidden="true">&raquo;</span>
                 </a>
             </li>
         </ul>
     </nav> -->
+    <!-- Tabla de resultados -->
     <br>
     <div class="row justify-content-center">
-        <div class="col-md-30">
-            <div class="card" style="border: 3px ridge white">
-                <h1 style="margin: auto;font-size:24px;margin-top:10px">Consultar Registro De Novedades</h1>
+        <div class="col-md-7">
+            <div class="card" style="border: 3px ridge white;">
+                <h1 style="margin: auto; font-size: 24px; margin-top: 10px;">Consultar Registro De Usuarios</h1>
                 <nav aria-label="page navegation example" style="margin-left: 10px;">
                     <ul class="pagination">
-                        <li v-bind:class="ocultarMostrarAnterior" v-on:click="anterior3" class="page-link" href="#" aria-label="previous">
+                        <li v-bind:class="ocultarMostrarAnterior" v-on:click="anterior4" class="page-link" href="#" aria-label="previous">
                             <span arial-hidden="true">&laquo;</span>
                             </a>
                         </li>
                         <li v-for="(pagina, index) in paginas" v-bind:class="botones[index]">
-                            <a class="page-link" href="#" v-on:click="paginar3(pagina)">@{{pagina}}</a>
+                            <a class="page-link" href="#" v-on:click="paginar4(pagina)">@{{pagina}}</a>
                         </li>
                         <li v-if="paginas == 1" class="page-item disabled">
                             <a class="page-link" href="#" aria-label="Next">
@@ -67,7 +70,7 @@
                             </a>
                         </li>
                         <li v-else v-bind:class="ocultarMostrarSiguiente">
-                            <a v-on:click="siguiente3" class="page-link" hfref="#" arial-label="Next">
+                            <a v-on:click="siguiente4" class="page-link" hfref="#" arial-label="Next">
                                 <span arial-hidden="true">&raquo;</span>
                             </a>
                         </li>
@@ -82,33 +85,21 @@
                     <table class="table table-success table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Fecha Novedad</th>
-                                <th scope="col">Nombre Novedad</th>
-                                <th scope="col">Nombre Semoviente</th>
-                                <th scope="col">Placa Inventario</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Responsable</th>
-                                @if (Auth::check() && Auth::user()->Tipo_usuario == 'Instructor' || Auth::user()->Tipo_usuario =='Pasante')
-
+                                <th scope="col">Nombre Usuario</th>
+                                <th scope="col">Correo Electronico</th>
+                                <th scope="col">Tipo Usuario</th>
                                 <th scope="col">Opciones</th>
-                                @endif
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(novedad,index) in centroNovedad" v-show="index >= desde && index < hasta">
-                                <td>@{{novedad.Fech_novedad}}</td>
-                                <td>@{{novedad.Nom_novedad}}</td>
-                                <td>@{{novedad.Nom_semoviente}}</td>
-                                <td>@{{novedad.Placa_inventario}}</td>
-                                <td>@{{novedad.Descripcion}}</td>
-                                <td>@{{novedad.Nom_responsable}}</td>
-                                @if (Auth::check() && Auth::user()->Tipo_usuario == 'Instructor' || Auth::user()->Tipo_usuario =='Pasante')
-
+                            <tr v-for="(usuario,index) in centroUsuario" v-show="index >= desde && index < hasta">
+                                <td>@{{usuario.name}}</td>
+                                <td>@{{usuario.email}}</td>
+                                <td>@{{usuario.Tipo_usuario}}</td>
                                 <td>
-                                    <a class="btn btn-success" v-bind:href="'http://127.0.0.1:8000/novedad/'+ novedad.Id_novedad"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <span style="margin-left: 5px;" class="btn btn-danger" v-on:click="eliminarNovedad(novedad.Id_novedad)"><i class="fa-solid fa-trash"></i></span>
+                                    <a class="btn btn-success" v-bind:href="'http://127.0.0.1:8000/usuarios/'+ usuario.id"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <span style="margin-left: 10px;" class="btn btn-danger" v-on:click="eliminarUsuario(usuario.id)"><i class="fa-solid fa-trash"></i></span>
                                 </td>
-                                @endif
                             </tr>
                         </tbody>
                     </table>

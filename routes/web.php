@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 Route::get('/generar-pdf/{Nom_unidad}',[App\Http\Controllers\semovientePDFController::class, 'generarPDF'])->name('generar-pdf');
 Route::get('/raza/pdf', [App\Http\Controllers\RazaController::class, 'pdf'])->name('razapdf');
 Route::get('/unidad/pdf', [App\Http\Controllers\UnidadController::class, 'pdf'])->name('unidadpdf');
@@ -48,3 +49,12 @@ Route::get('/contarUnidades', [App\Http\Controllers\UnidadController::class, 'co
 Route::get('/contarSemovientes', [App\Http\Controllers\SemovienteController::class, 'contarSemovientes']);
 Route::get('/contarNovedades', [App\Http\Controllers\NovedadController::class, 'contarNovedades']);
 Route::put('/cambiarEstadoSemoviente', [App\Http\Controllers\SemovienteController::class, 'cambiarEstadoSemoviente']);
+Route::resource('/usuarios', App\Http\Controllers\UsuariosController::class);
+Route::get('/centroUsuarioBuscar/{cadena}', [App\Http\Controllers\UsuariosController::class,'centroUsuarioBuscar']);
+Route::get('/contarUsuarios', [App\Http\Controllers\UsuariosController::class, 'contarUsuarios']);
+Route::get('/agregarUsuarios', [App\Http\Controllers\UsuariosController::class, 'agregar']);
+Route::resource('/responsable', App\Http\Controllers\ResponsableController::class);
+Route::get('/centroResponsableBuscar/{cadena}', [App\Http\Controllers\ResponsableController::class,'centroResponsableBuscar']);
+Route::get('/contarResponsables', [App\Http\Controllers\ResponsableController::class, 'contarResponsables']);
+Route::get('/agregarResponsable', [App\Http\Controllers\ResponsableController::class, 'agregar']);
+

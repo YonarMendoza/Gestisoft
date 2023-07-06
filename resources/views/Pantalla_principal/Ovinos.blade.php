@@ -57,10 +57,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" href="{{ route('login') }}"><i style="margin-left:40px" class="fa-sharp fa-solid fa-user"></i> <br><b>{{ __('Iniciar Sesion') }}</b></a>
                                 </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="{{ route('register') }}"><i style="margin-left:30px" class="fa-solid fa-user-plus"></i><br><b>{{ __('Registrarse') }}</b></a>
-                                </li>
                             </ul>
                         </div>
                 </div>
