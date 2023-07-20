@@ -6,8 +6,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card"  style="border: 3px ridge white">
-                <div class="card-header">{{ __('Registro De Razas') }}</div>
+            <div class="card" style="border: 3px ridge white">
+                <h1 style="margin: auto;font-size:24px;margin-top:10px">Editar Registro De Razas</h1>
 
                 <div class="card-body">
                     @foreach($Raza as $raza)
@@ -19,7 +19,7 @@
                             <label for="Nom_raza" class="col-md-4 col-form-label text-md-end">{{ __('Nombre De La Raza') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Nom_raza" type="text" value="{{ $raza['Nom_raza']}}" class="form-control @error('Nom_raza') is-invalid @enderror" name="Nom_raza" value="{{ old('Nom_raza') }}" required autocomplete="Nom_raza">
+                                <input id="Nom_raza" oninput="capitalizeFirstLetter(this)" type="text" value="{{ $raza['Nom_raza']}}" class="form-control @error('Nom_raza') is-invalid @enderror" name="Nom_raza" value="{{ old('Nom_raza') }}" required autocomplete="Nom_raza">
 
                                 @error('Nom_raza')
                                 <span class="invalid-feedback" role="alert">
@@ -38,11 +38,11 @@
                         </div>
                     </form>
                     @endforeach
+
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
-@endif
-@endif
+    @endsection
+    @endif
+    @endif

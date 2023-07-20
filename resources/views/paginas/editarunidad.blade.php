@@ -7,8 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="border: 3px ridge white">
-                <div class="card-header">{{ __('Registro De Unidades') }}</div>
-
+                <h1 style="margin: auto;font-size:24px;margin-top:10px">Editar Registro De Unidades</h1>
                 <div class="card-body">
                     @foreach($Unidad as $unidad)
                     <form method="POST" action="{{ url('/')}}/unidad/{{$unidad['Id_unidad']}}">
@@ -18,7 +17,7 @@
                             <label for="Nom_unidad" class="col-md-4 col-form-label text-md-end">{{ __('Nombre De La Unidad') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Nom_unidad" type="text" value="{{ $unidad['Nom_unidad']}}" class="form-control @error('Nom_unidad') is-invalid @enderror" name="Nom_unidad" value="{{ old('Nom_unidad') }}" required autocomplete="Nom_unidad">
+                                <input id="Nom_unidad" oninput="capitalizeFirstLetter(this)" type="text" value="{{ $unidad['Nom_unidad']}}" class="form-control @error('Nom_unidad') is-invalid @enderror" name="Nom_unidad" value="{{ old('Nom_unidad') }}" required autocomplete="Nom_unidad">
 
                                 @error('Nom_unidad')
                                 <span class="invalid-feedback" role="alert">
@@ -52,9 +51,9 @@
                     @endforeach
                 </div>
             </div>
+
         </div>
     </div>
-</div>
-@endsection
-@endif
-@endif
+    @endsection
+    @endif
+    @endif

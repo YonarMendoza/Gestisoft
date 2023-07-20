@@ -35,17 +35,17 @@ const app = createApp({
             textoResponsable: "",
             centroResponsable: [],
             totalUsuarios: 0,
-            usuariosPagina: 3,
+            usuariosPagina: 10,
             totalResponsables: 0,
-            responsablesPagina: 3,
+            responsablesPagina: 10,
             totalRazas: 0,
-            razasPagina: 3,
+            razasPagina: 10,
             totalUnidades: 0,
-            unidadesPagina: 3,
+            unidadesPagina: 10,
             totalSemovientes: 0,
-            semovientesPagina: 3,
+            semovientesPagina: 10,
             totalNovedades: 0,
-            novedadesPagina: 3,
+            novedadesPagina: 10,
             paginas: "",
             paginaActual: 1,
             desde: "",
@@ -59,13 +59,13 @@ const app = createApp({
         eliminarRaza(id_raza) {
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
-                  confirmButton: 'btn btn-success',
-                  cancelButton: 'btn btn-danger'
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
                 },
                 buttonsStyling: false
-              });
-              
-              swalWithBootstrapButtons.fire({
+            });
+
+            swalWithBootstrapButtons.fire({
                 title: '¿Está seguro que quiere eliminar el registro?',
                 text: "¡No podrá revertir esto!",
                 icon: 'warning',
@@ -73,39 +73,162 @@ const app = createApp({
                 confirmButtonText: 'Aceptar',
                 cancelButtonText: 'Cancelar',
                 reverseButtons: true
-              }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
-                  swalWithBootstrapButtons.fire(
-                    '¡Eliminado!',
-                    'Su registro ha sido eliminado.',
-                    'success'
-                  ).then(() => {
-                    axios
-                      .delete(`http://127.0.0.1:8000/raza/${id_raza}`)
-                      .then((respuesta) => {
-                        console.log(respuesta.data);
-                        window.location.href = "http://127.0.0.1:8000/raza/";
-                      });
-                  });
+                    swalWithBootstrapButtons.fire(
+                        '¡Eliminado!',
+                        'Su registro ha sido eliminado.',
+                        'success'
+                    ).then(() => {
+                        axios
+                            .delete(`http://127.0.0.1:8000/raza/${id_raza}`)
+                            .then((respuesta) => {
+                                console.log(respuesta.data);
+                                window.location.href = "http://127.0.0.1:8000/raza/";
+                            });
+                    });
                 } else if (
-                  result.dismiss === Swal.DismissReason.cancel
+                    result.dismiss === Swal.DismissReason.cancel
                 ) {
-                  swalWithBootstrapButtons.fire(
-                    'Cancelado',
-                    'Su registro esta seguro',
-                    'error'
-                  );
+                    swalWithBootstrapButtons.fire(
+                        'Cancelado',
+                        'Su registro esta seguro',
+                        'error'
+                    );
                 }
-              });
+            });
         },
-        Guardarregistro() {
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Su Registro Ha Sido Guardado',
-                showConfirmButton: false,
-                timer: 1500
-              })
+        togglePasswordVisibility() {
+            var passwordInput = document.getElementById('passwordInput');
+            var verPasswordIcon = document.getElementById('verPasswordIcon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                verPasswordIcon.classList.remove('fa-eye');
+                verPasswordIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                verPasswordIcon.classList.remove('fa-eye-slash');
+                verPasswordIcon.classList.add('fa-eye');
+            }
+        },
+        GuardarregistroRaza() {
+            var nomRaza = document.getElementById('Nom_raza').value;
+            if (nomRaza.trim() === '') {
+                return;
+            } else {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Su Registro Ha Sido Guardado',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        },
+        GuardarregistroUnidad() {
+            var nomUnidad = document.getElementById('Nom_unidad').value;
+            var tolAnimales = document.getElementById('Total_animales').value;
+            if (nomUnidad.trim() === '' || tolAnimales.trim() === '') {
+                return;
+            } else {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Su Registro Ha Sido Guardado',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        },
+        GuardarSemoviente() {
+            var inputs = document.querySelectorAll('input, select');
+            var isEmpty = false;
+
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].value.trim() === '') {
+                    isEmpty = true;
+                    break;
+                }
+            }
+            if (isEmpty) {
+                return;
+            } else {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Su Registro Ha Sido Guardado',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        },
+        GuardarregistroResponsable() {
+            var inputs = document.querySelectorAll('input, select');
+            var isEmpty = false;
+
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].value.trim() === '') {
+                    isEmpty = true;
+                    break;
+                }
+            }
+            if (isEmpty) {
+                return;
+            } else {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Su Registro Ha Sido Guardado',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        },
+        GuardarregistroNovedad() {
+            var inputs = document.querySelectorAll('input, select');
+            var isEmpty = false;
+
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].value.trim() === '') {
+                    isEmpty = true;
+                    break;
+                }
+            }
+            if (isEmpty) {
+                return;
+            } else {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Su Registro Ha Sido Guardado',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        },
+        GuardarregistroUsuario() {
+            var inputs = document.querySelectorAll('input, select');
+            var isEmpty = false;
+
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].value.trim() === '') {
+                    isEmpty = true;
+                    break;
+                }
+            }
+
+            if (isEmpty) {
+                return;
+            } else {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Su Registro Ha Sido Guardado',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
         },
         Editarregistro() {
             Swal.fire({
@@ -114,18 +237,18 @@ const app = createApp({
                 title: 'Su Registro Ha Sido Actualizado',
                 showConfirmButton: false,
                 timer: 1500
-              })
+            })
         },
         eliminarResponsable(id_responsable) {
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
-                  confirmButton: 'btn btn-success',
-                  cancelButton: 'btn btn-danger'
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
                 },
                 buttonsStyling: false
-              });
-              
-              swalWithBootstrapButtons.fire({
+            });
+
+            swalWithBootstrapButtons.fire({
                 title: '¿Está seguro que quiere eliminar el registro?',
                 text: "¡No podrá revertir esto!",
                 icon: 'warning',
@@ -133,31 +256,31 @@ const app = createApp({
                 confirmButtonText: 'Aceptar',
                 cancelButtonText: 'Cancelar',
                 reverseButtons: true
-              }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
-                  swalWithBootstrapButtons.fire(
-                    '¡Eliminado!',
-                    'Su registro ha sido eliminado.',
-                    'success'
-                  ).then(() => {
-                    axios
-                      .delete(`http://127.0.0.1:8000/responsable/${id_responsable}`)
-                      .then((respuesta) => {
-                        console.log(respuesta.data);
-                        window.location.href = "http://127.0.0.1:8000/responsable/";
-                      });
-                  });
+                    swalWithBootstrapButtons.fire(
+                        '¡Eliminado!',
+                        'Su registro ha sido eliminado.',
+                        'success'
+                    ).then(() => {
+                        axios
+                            .delete(`http://127.0.0.1:8000/responsable/${id_responsable}`)
+                            .then((respuesta) => {
+                                console.log(respuesta.data);
+                                window.location.href = "http://127.0.0.1:8000/responsable/";
+                            });
+                    });
                 } else if (
-                  result.dismiss === Swal.DismissReason.cancel
+                    result.dismiss === Swal.DismissReason.cancel
                 ) {
-                  swalWithBootstrapButtons.fire(
-                    'Cancelado',
-                    'Su registro esta seguro',
-                    'error'
-                  );
+                    swalWithBootstrapButtons.fire(
+                        'Cancelado',
+                        'Su registro esta seguro',
+                        'error'
+                    );
                 }
-              });
-          },
+            });
+        },
 
         buscarResponsable() {
             if (this.textoResponsable.length > 0) {
@@ -212,13 +335,13 @@ const app = createApp({
         eliminarUsuario(id) {
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
-                  confirmButton: 'btn btn-success',
-                  cancelButton: 'btn btn-danger'
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
                 },
                 buttonsStyling: false
-              });
-              
-              swalWithBootstrapButtons.fire({
+            });
+
+            swalWithBootstrapButtons.fire({
                 title: '¿Está seguro que quiere eliminar el registro?',
                 text: "¡No podrá revertir esto!",
                 icon: 'warning',
@@ -226,30 +349,30 @@ const app = createApp({
                 confirmButtonText: 'Aceptar',
                 cancelButtonText: 'Cancelar',
                 reverseButtons: true
-              }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
-                  swalWithBootstrapButtons.fire(
-                    '¡Eliminado!',
-                    'Su registro ha sido eliminado.',
-                    'success'
-                  ).then(() => {
-                    axios
-                      .delete(`http://127.0.0.1:8000/usuarios/${id}`)
-                      .then((respuesta) => {
-                        console.log(respuesta.data);
-                        window.location.href = "http://127.0.0.1:8000/usuarios/";
-                      });
-                  });
+                    swalWithBootstrapButtons.fire(
+                        '¡Eliminado!',
+                        'Su registro ha sido eliminado.',
+                        'success'
+                    ).then(() => {
+                        axios
+                            .delete(`http://127.0.0.1:8000/usuarios/${id}`)
+                            .then((respuesta) => {
+                                console.log(respuesta.data);
+                                window.location.href = "http://127.0.0.1:8000/usuarios/";
+                            });
+                    });
                 } else if (
-                  result.dismiss === Swal.DismissReason.cancel
+                    result.dismiss === Swal.DismissReason.cancel
                 ) {
-                  swalWithBootstrapButtons.fire(
-                    'Cancelado',
-                    'Su registro esta seguro',
-                    'error'
-                  );
+                    swalWithBootstrapButtons.fire(
+                        'Cancelado',
+                        'Su registro esta seguro',
+                        'error'
+                    );
                 }
-              });
+            });
         },
         buscarUsuario() {
             if (this.textoUsuario.length > 0) {
@@ -515,13 +638,13 @@ const app = createApp({
         eliminarUnidad(id_unidad) {
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
-                  confirmButton: 'btn btn-success',
-                  cancelButton: 'btn btn-danger'
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
                 },
                 buttonsStyling: false
-              });
-              
-              swalWithBootstrapButtons.fire({
+            });
+
+            swalWithBootstrapButtons.fire({
                 title: '¿Está seguro que quiere eliminar el registro?',
                 text: "¡No podrá revertir esto!",
                 icon: 'warning',
@@ -529,30 +652,30 @@ const app = createApp({
                 confirmButtonText: 'Aceptar',
                 cancelButtonText: 'Cancelar',
                 reverseButtons: true
-              }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
-                  swalWithBootstrapButtons.fire(
-                    '¡Eliminado!',
-                    'Su registro ha sido eliminado.',
-                    'success'
-                  ).then(() => {
-                    axios
-                      .delete(`http://127.0.0.1:8000/unidad/${id_unidad}`)
-                      .then((respuesta) => {
-                        console.log(respuesta.data);
-                        window.location.href = "http://127.0.0.1:8000/unidad/";
-                      });
-                  });
+                    swalWithBootstrapButtons.fire(
+                        '¡Eliminado!',
+                        'Su registro ha sido eliminado.',
+                        'success'
+                    ).then(() => {
+                        axios
+                            .delete(`http://127.0.0.1:8000/unidad/${id_unidad}`)
+                            .then((respuesta) => {
+                                console.log(respuesta.data);
+                                window.location.href = "http://127.0.0.1:8000/unidad/";
+                            });
+                    });
                 } else if (
-                  result.dismiss === Swal.DismissReason.cancel
+                    result.dismiss === Swal.DismissReason.cancel
                 ) {
-                  swalWithBootstrapButtons.fire(
-                    'Cancelado',
-                    'Su registro esta seguro',
-                    'error'
-                  );
+                    swalWithBootstrapButtons.fire(
+                        'Cancelado',
+                        'Su registro esta seguro',
+                        'error'
+                    );
                 }
-              });
+            });
         },
         buscarUnidad() {
             if (this.textoUnidad.length > 0) {
@@ -586,13 +709,13 @@ const app = createApp({
         eliminarSemoviente(id_semoviente) {
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
-                  confirmButton: 'btn btn-success',
-                  cancelButton: 'btn btn-danger'
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
                 },
                 buttonsStyling: false
-              });
-              
-              swalWithBootstrapButtons.fire({
+            });
+
+            swalWithBootstrapButtons.fire({
                 title: '¿Está seguro que quiere eliminar el registro?',
                 text: "¡No podrá revertir esto!",
                 icon: 'warning',
@@ -600,30 +723,30 @@ const app = createApp({
                 confirmButtonText: 'Aceptar',
                 cancelButtonText: 'Cancelar',
                 reverseButtons: true
-              }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
-                  swalWithBootstrapButtons.fire(
-                    '¡Eliminado!',
-                    'Su registro ha sido eliminado.',
-                    'success'
-                  ).then(() => {
-                    axios
-                      .delete(`http://127.0.0.1:8000/semoviente/${id_semoviente}`)
-                      .then((respuesta) => {
-                        console.log(respuesta.data);
-                        window.location.href = "http://127.0.0.1:8000/semoviente/";
-                      });
-                  });
+                    swalWithBootstrapButtons.fire(
+                        '¡Eliminado!',
+                        'Su registro ha sido eliminado.',
+                        'success'
+                    ).then(() => {
+                        axios
+                            .delete(`http://127.0.0.1:8000/semoviente/${id_semoviente}`)
+                            .then((respuesta) => {
+                                console.log(respuesta.data);
+                                window.location.href = "http://127.0.0.1:8000/semoviente/";
+                            });
+                    });
                 } else if (
-                  result.dismiss === Swal.DismissReason.cancel
+                    result.dismiss === Swal.DismissReason.cancel
                 ) {
-                  swalWithBootstrapButtons.fire(
-                    'Cancelado',
-                    'Su registro esta seguro',
-                    'error'
-                  );
+                    swalWithBootstrapButtons.fire(
+                        'Cancelado',
+                        'Su registro esta seguro',
+                        'error'
+                    );
                 }
-              });
+            });
         },
         buscarSemoviente() {
             if (this.textoSemoviente.length > 0) {
@@ -658,13 +781,13 @@ const app = createApp({
         eliminarNovedad(id_novedad) {
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
-                  confirmButton: 'btn btn-success',
-                  cancelButton: 'btn btn-danger'
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
                 },
                 buttonsStyling: false
-              });
-              
-              swalWithBootstrapButtons.fire({
+            });
+
+            swalWithBootstrapButtons.fire({
                 title: '¿Está seguro que quiere eliminar el registro?',
                 text: "¡No podrá revertir esto!",
                 icon: 'warning',
@@ -672,30 +795,30 @@ const app = createApp({
                 confirmButtonText: 'Aceptar',
                 cancelButtonText: 'Cancelar',
                 reverseButtons: true
-              }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
-                  swalWithBootstrapButtons.fire(
-                    '¡Eliminado!',
-                    'Su registro ha sido eliminado.',
-                    'success'
-                  ).then(() => {
-                    axios
-                      .delete(`http://127.0.0.1:8000/novedad/${id_novedad}`)
-                      .then((respuesta) => {
-                        console.log(respuesta.data);
-                        window.location.href = "http://127.0.0.1:8000/novedad/";
-                      });
-                  });
+                    swalWithBootstrapButtons.fire(
+                        '¡Eliminado!',
+                        'Su registro ha sido eliminado.',
+                        'success'
+                    ).then(() => {
+                        axios
+                            .delete(`http://127.0.0.1:8000/novedad/${id_novedad}`)
+                            .then((respuesta) => {
+                                console.log(respuesta.data);
+                                window.location.href = "http://127.0.0.1:8000/novedad/";
+                            });
+                    });
                 } else if (
-                  result.dismiss === Swal.DismissReason.cancel
+                    result.dismiss === Swal.DismissReason.cancel
                 ) {
-                  swalWithBootstrapButtons.fire(
-                    'Cancelado',
-                    'Su registro esta seguro',
-                    'error'
-                  );
+                    swalWithBootstrapButtons.fire(
+                        'Cancelado',
+                        'Su registro esta seguro',
+                        'error'
+                    );
                 }
-              });
+            });
         },
         buscarNovedad() {
             if (this.textoNovedad.length > 0) {

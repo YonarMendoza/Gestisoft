@@ -53,7 +53,7 @@
                                 </li>
                                 
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="{{ url('quienes') }}"><i style="margin-left:40px" class="fa-solid fa-users"></i> <br><b>Quienes Somos</b></a>
+                                    <a class="nav-link active" href="{{ url('quienes') }}"><i style="margin-left:40px" class="fa-solid fa-users"></i> <br><b>Desarrolladores</b></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link active" href="{{ route('login') }}"><i style="margin-left:40px" class="fa-sharp fa-solid fa-user"></i> <br><b>{{ __('Iniciar Sesion') }}</b></a>

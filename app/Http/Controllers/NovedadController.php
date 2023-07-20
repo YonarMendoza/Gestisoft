@@ -23,6 +23,7 @@ class NovedadController extends Controller
     public function pdf(){
         $Novedad = NovedadModel::all();
         $pdf = Pdf::loadView('pdf.novedadpdf',array("Novedad" => $Novedad), compact('Novedad'));
+        $pdf->setPaper('letter', 'landscape');
         return $pdf->download('Gestisoft_Novedades.pdf');
 
     }

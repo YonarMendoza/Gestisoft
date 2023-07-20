@@ -11,7 +11,7 @@
             <input type="text" class="form-control" placeholder="Ingrese Datos A Buscar" v-model="textoNovedad" v-on:keyup="buscarNovedad">
         </div>
         <div class="col-auto">
-            <span v-if="centroNovedad.length == 0" class="btn btn-success" v-on:click="buscarNovedad">Todos</span>
+            <span v-if="centroNovedad.length == 0" class="btn btn-success" v-on:click="buscarNovedad"><img src="{{ asset('img/eye-icon-1.png')}}" style="width: 30px;"></span>
         </div>
         <ul class="navbar-nav ms-auto" style="margin-top:-10px">
             <li class="nav-item dropdown" style="margin-left: 450px;margin-top:-30px">
@@ -79,39 +79,41 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    <table class="table table-success table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Fecha Novedad</th>
-                                <th scope="col">Nombre Novedad</th>
-                                <th scope="col">Nombre Semoviente</th>
-                                <th scope="col">Placa Inventario</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Responsable</th>
-                                @if (Auth::check() && Auth::user()->Tipo_usuario == 'Instructor' || Auth::user()->Tipo_usuario =='Pasante')
+                    <div class="table-responsive">
+                        <table class="table table-success table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Fecha Novedad</th>
+                                    <th scope="col">Nombre Novedad</th>
+                                    <th scope="col">Nombre Semoviente</th>
+                                    <th scope="col">Placa Inventario</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Nombre Responsable</th>
+                                    @if (Auth::check() && Auth::user()->Tipo_usuario == 'Instructor' || Auth::user()->Tipo_usuario =='Pasante')
 
-                                <th scope="col">Opciones</th>
-                                @endif
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(novedad,index) in centroNovedad" v-show="index >= desde && index < hasta">
-                                <td>@{{novedad.Fech_novedad}}</td>
-                                <td>@{{novedad.Nom_novedad}}</td>
-                                <td>@{{novedad.Nom_semoviente}}</td>
-                                <td>@{{novedad.Placa_inventario}}</td>
-                                <td>@{{novedad.Descripcion}}</td>
-                                <td>@{{novedad.Nom_responsable}}</td>
-                                @if (Auth::check() && Auth::user()->Tipo_usuario == 'Instructor' || Auth::user()->Tipo_usuario =='Pasante')
+                                    <th scope="col">Opciones</th>
+                                    @endif
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(novedad,index) in centroNovedad" v-show="index >= desde && index < hasta">
+                                    <td>@{{novedad.Fech_novedad}}</td>
+                                    <td>@{{novedad.Nom_novedad}}</td>
+                                    <td>@{{novedad.Nom_semoviente}}</td>
+                                    <td>@{{novedad.Placa_inventario}}</td>
+                                    <td>@{{novedad.Descripcion}}</td>
+                                    <td>@{{novedad.Nom_responsable}}</td>
+                                    @if (Auth::check() && Auth::user()->Tipo_usuario == 'Instructor' || Auth::user()->Tipo_usuario =='Pasante')
 
-                                <td>
-                                    <a class="btn btn-success" v-bind:href="'http://127.0.0.1:8000/novedad/'+ novedad.Id_novedad"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <span style="margin-left: 5px;" class="btn btn-danger" v-on:click="eliminarNovedad(novedad.Id_novedad)"><i class="fa-solid fa-trash"></i></span>
-                                </td>
-                                @endif
-                            </tr>
-                        </tbody>
-                    </table>
+                                    <td>
+                                        <a class="btn btn-success" v-bind:href="'http://127.0.0.1:8000/novedad/'+ novedad.Id_novedad"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <span style="margin-top: -1px;margin-left:10px" class="btn btn-danger" v-on:click="eliminarNovedad(novedad.Id_novedad)"><i class="fa-solid fa-trash"></i></span>
+                                    </td>
+                                    @endif
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

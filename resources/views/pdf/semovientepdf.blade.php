@@ -1,7 +1,6 @@
-
 @php
 use Carbon\Carbon;
-$fecha = Carbon::now('America/Bogota')->format('Y-m-d H:i:s A');
+$fecha = Carbon::now('America/Bogota')->format('Y-m-d h:i:s A');
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -42,24 +41,27 @@ $fecha = Carbon::now('America/Bogota')->format('Y-m-d H:i:s A');
 
 <body>
     <img src="assets/aaa.jpg" style="width: 100px;height: 100px">
-    <h1 style="margin-left: 210px;margin-top:-70px">Registro De Semovientes</h1> <br> <br>
-    <h1 style="margin-left: 240px;margin-top:-70px; font-size: 25px;">{{$nombreUnidad}}</h1> 
+    <h1 style="margin-left: 310px;margin-top:-70px">Registro De Semovientes</h1> <br> <br>
+    <h1 style="margin-left: 360px;margin-top:-70px; font-size: 25px;">{{$nombreUnidad}}</h1>
     <span>Total De Semovientes: {{ count($data) }} </span>
-    <span style="margin-top: -30px;margin-left:230px">Fecha De Reporte: {{ $fecha }}</span>
+    <span style="margin-top: -30px;margin-left:505px">Fecha De Reporte: {{ $fecha }}</span>
     <table class="content-table">
         <thead>
             <tr>
                 <th scope="col">N° Registros</th>
                 <th scope="col">Placa Inventario</th>
                 <th scope="col">Nombre Unidad</th>
-                <th scope="col">Nombre Semoviente</th>
+                <th scope="col">Identificación Semoviente</th>
                 <th scope="col">Nombre Raza</th>
                 <th scope="col">Tipo Semoviente</th>
                 <th scope="col">Sexo Semoviente</th>
                 <th scope="col">Fecha Nacimiento</th>
-                <th scope="col">Peso Nacimiento</th>
+                <th scope="col">Peso Nacimiento (KG)</th>
                 <th scope="col">Fecha Ingreso</th>
                 <th scope="col">Tipo Ingreso</th>
+                <th scope="col">Placa Inventario Padre</th>
+                <th scope="col">Placa Inventario Madre</th>
+                <th scope="col">Valor Semoviente (COP)</th>
             </tr>
         </thead>
         <tbody>
@@ -83,12 +85,15 @@ $fecha = Carbon::now('America/Bogota')->format('Y-m-d H:i:s A');
                 <td>{{$item['Peso_nacimiento']}}</td>
                 <td>{{$item['Fech_ingreso']}}</td>
                 <td>{{$item['Tipo_ingreso']}}</td>
+                <td>{{$item['Placa_padre']}}</td>
+                <td>{{$item['Placa_madre']}}</td>
+                <td>${{ number_format($item['Valor_semoviente']) }}</td>
             </tr>
 
             @endforeach
         </tbody>
     </table>
-    
+
 </body>
 
 </html>

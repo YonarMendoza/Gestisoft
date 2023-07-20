@@ -1,6 +1,6 @@
 @php
 use Carbon\Carbon;
-$fecha = Carbon::now('America/Bogota')->format('Y-m-d H:i:s A');
+$fecha = Carbon::now('America/Bogota')->format('Y-m-d h:i:s A');
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +15,9 @@ $fecha = Carbon::now('America/Bogota')->format('Y-m-d H:i:s A');
             border-collapse: collapse;
             margin: 5px 0;
             font-size: 0.9em;
-            min-width: 700px;
+            min-width: 950px;
             align-items: center;
+            margin-left: -30px;
         }
 
         .content-table thead tr {
@@ -41,9 +42,9 @@ $fecha = Carbon::now('America/Bogota')->format('Y-m-d H:i:s A');
 
 <body>
     <img src="assets/aaa.jpg" style="width: 100px;height: 100px">
-    <h1 style="margin-left: 210px;margin-top:-70px">Registro De Novedades</h1> <br>
+    <h1 style="margin-left: 310px;margin-top:-70px">Registro De Novedades</h1> <br>
     <span>Total De Novedades: {{ $Novedad->count() }}
-        <span style="margin-top: -30px;margin-left:230px">Fecha De Reporte: {{ $fecha}}</span>
+        <span style="margin-top: -30px;margin-left:500px">Fecha De Reporte: {{ $fecha}}</span>
         <table class="content-table">
             <thead>
                 <tr>

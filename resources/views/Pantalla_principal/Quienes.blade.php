@@ -52,7 +52,7 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="{{ url('quienes') }}"><i style="margin-left:40px"  class="fa-solid fa-users"></i> <br><b>Quienes Somos</b></a>
+                                    <a class="nav-link active" href="{{ url('quienes') }}"><i style="margin-left:40px"  class="fa-solid fa-users"></i> <br><b>Desarrolladores</b></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link active" href="{{ route('login') }}"><i style="margin-left:40px" class="fa-sharp fa-solid fa-user"></i> <br><b>{{ __('Iniciar Sesion') }}</b></a>
@@ -69,24 +69,28 @@
     </div>
     <main>
         <section>
-            <img  src="{{ asset('img/aaa.png')}}" alt="Person 1">
-            <h2>Yonar Estiber <br> Mendoza Cuellar</h2>
-            <p>Rol: Analista y Desarrollador</p>
+            <img  src="{{ asset('img/Yonar_Final.jpg')}}" alt="Person 1">
+            <h2><b>Yonar Estiber <br> Mendoza Cuellar</b></h2>
+            <p><b> Rol:</b> <br> Analista y Desarrollador</p>
+            <p><b> Correo:</b> <br> Myonar47@gmail.com</p>
         </section>
         <section>
-            <img src="{{ asset('img/Laura.jpg')}}" alt="Person 2">
-            <h2>Laura Valentina Manchola Parra</h2>
-            <p>Rol: Analista y Desarrolladora</p>
+            <img style="width: 600px;height: 290px;" src="{{ asset('img/Laura_Final.jpg')}}" alt="Person 2">
+            <h2><b>Laura Valentina Manchola Parra</b></h2>
+            <p><b> Rol:</b> <br> Analista y Desarrolladora</p>
+            <p><b> Correo:</b> <br> Valentinamanchola27@gmail.com</p>
         </section>
         <section style="margin-left: -20px;">
-            <img src="{{ asset('img/Leidy.jpg')}}" alt="Person 3">
-            <h2>Leidy Vanessa <br> Jara  Saez</h2>
-            <p>Rol: Analista y Desarrolladora</p>
+            <img src="{{ asset('img/Leidy_Final.jpg')}}" alt="Person 3">
+            <h2><b> Leidy Vanessa <br> Jara  Saez</b></h2>
+            <p><b> Rol:</b> <br> Analista y Desarrolladora</p>
+            <p><b> Correo:</b> <br> Leidyjara1108@gmail.com</p>
         </section>
         <section style="margin-left: -10px;">
-            <img src="{{ asset('img/Carol.jpg')}}" alt="Person 2">
-            <h2>Carol Tatiana <br> Carrera Quintana</h2>
-            <p>Rol: Analista y Desarrolladora</p>
+            <img style="width: 175px;" src="{{ asset('img/Carol_Final1.jpg')}}" alt="Person 2">
+            <h2><b> Carol Tatiana <br> Carrera Quintana</b></h2>
+            <p><b> Rol:</b> <br> Analista y Desarrolladora</p>
+            <p><b> Correo:</b> <br> Carolcarrera2004@gmail.com</p>
         </section>
     </main>
 </body>

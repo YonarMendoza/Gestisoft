@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="border: 3px ridge white">
-                <div class="card-header">{{ __('Registro De Usuarios') }}</div>
+                <h1 style="margin: auto;font-size:24px;margin-top:10px">Editar Registro De Usuarios</h1>
 
                 <div class="card-body">
                     @foreach($Usuario as $usuario)
@@ -18,7 +18,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre Del Usuario') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" value="{{ $usuario['name']}}" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
+                                <input id="name" oninput="capitalizeFirstLetter(this)" type="text" value="{{ $usuario['name']}}" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
 
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -31,7 +31,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Correo Electronico') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" min="0" value="{{ $usuario['email']}}" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" min="0" oninput="capitalizeFirstLetter(this)" value="{{ $usuario['email']}}" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -72,7 +72,6 @@
             </div>
         </div>
     </div>
-</div>
-@endsection
-@endif
-@endif
+    @endsection
+    @endif
+    @endif

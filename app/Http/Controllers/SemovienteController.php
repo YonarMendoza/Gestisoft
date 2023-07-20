@@ -99,6 +99,9 @@ class SemovienteController extends Controller
             "Peso_nacimiento" => $request->input("Peso_nacimiento"),
             "Fech_ingreso" => $request->input("Fech_ingreso"),
             "Tipo_ingreso" => $request->input("Tipo_ingreso"),
+            "Placa_padre" => $request->input("Placa_padre"),
+            "Placa_madre" => $request->input("Placa_madre"),
+            "Valor_semoviente" => $request->input("Valor_semoviente"),
         );
 
         if (!empty($datos)) {
@@ -147,6 +150,9 @@ class SemovienteController extends Controller
             "Peso_nacimiento" => $request->input("Peso_nacimiento"),
             "Fech_ingreso" => $request->input("Fech_ingreso"),
             "Tipo_ingreso" => $request->input("Tipo_ingreso"),
+            "Placa_padre" => $request->input("Placa_padre"),
+            "Placa_madre" => $request->input("Placa_madre"),
+            "Valor_semoviente" => $request->input("Valor_semoviente"),
         );
         if (!empty($datos)) {
             $Semoviente = SemovienteModel::insert($datos);

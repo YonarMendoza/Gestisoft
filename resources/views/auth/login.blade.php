@@ -51,7 +51,7 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="{{ url('quienes') }}"><i style="margin-left:40px" class="fa-solid fa-users"></i> <br><b>Quienes Somos</b></a>
+                                    <a class="nav-link active" href="{{ url('quienes') }}"><i style="margin-left:40px" class="fa-solid fa-users"></i> <br><b>Desarrolladores</b></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link active" href="{{ route('login') }}"><i style="margin-left:40px" class="fa-sharp fa-solid fa-user"></i> <br><b>{{ __('Iniciar Sesion') }}</b></a>
@@ -93,8 +93,8 @@
 
                                         <h style="margin-top: 10px;"><b>Por Favor, Ingresar Tu Correo Electronico Y Contraseña</b></h>
                                         <div class="form-outline mb-4" style="margin-top: 20px;">
-                                            <label class="form-label" for="form2Example11"><b>Correo Electronico</b></label>
-                                            <input type="email" name="email" id="form2Example11" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Ingrese Tu Correo Electronico" />
+                                            <label class="form-label"><b>Correo Electronico</b></label>
+                                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Ingrese Tu Correo Electronico" />
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -104,17 +104,32 @@
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example22"><b>Contraseña</b></label>
-                                            <input type="password" name="password" id="form2Example22" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Ingrese Tu Contraseña" />
-                                            @error('password')
+                                            <input id="passwordInput" type="password" value="" class="form-control @error('password') is-invalid @enderror" placeholder="Ingrese Tu Contraseña" name="password" value="{{ old('password') }}" required autocomplete="password">
+                                            <button class="btn btn-outline-secondary btn-sm" style="margin-left: 80px;margin-top:-150px; " type="button" id="verPasswordButton" onclick="togglePasswordVisibility()"><i id="verPasswordIcon" class="fas fa-eye"></i></button> @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                             @enderror
+                                            <script>
+                                                function togglePasswordVisibility() {
+                                                    var passwordInput = document.getElementById('passwordInput');
+                                                    var passwordIcon = document.getElementById('verPasswordIcon');
+
+                                                    if (passwordInput.type === 'password') {
+                                                        passwordInput.type = 'text';
+                                                        passwordIcon.classList.remove('fa-eye');
+                                                        passwordIcon.classList.add('fa-eye-slash');
+                                                    } else {
+                                                        passwordInput.type = 'password';
+                                                        passwordIcon.classList.remove('fa-eye-slash');
+                                                        passwordIcon.classList.add('fa-eye');
+                                                    }
+                                                }
+                                            </script>
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <button style="  background-image: linear-gradient(to right, black, green);
-                                color: white;padding: 10px 20px;border: none;border-radius: 5px;font-size: 16px;cursor: pointer;" type="submit">Iniciar Sesión
+                                            <button style="  background-image: linear-gradient(to right, black, green);color: white;padding: 10px 20px;border: none;border-radius: 5px;font-size: 16px;cursor: pointer;" type="submit">Iniciar Sesión
                                             </button>
                                         </div>
                                     </form>

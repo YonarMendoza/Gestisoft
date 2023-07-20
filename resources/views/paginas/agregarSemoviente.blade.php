@@ -7,10 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="border: 3px ridge white">
-                <div class="card-header">
-                    <h5 style="margin-left: 240px;">Registro De Semovientes</h5>
-                </div>
-
+                <h1 style="margin: auto;font-size:24px;margin-top:10px">Agregar Registro De Semovientes</h1>
                 <div class="card-body">
 
                     <form method="POST" action="{{ url('/')}}/semoviente/">
@@ -19,7 +16,7 @@
                             <label for="Placa_inventario" class="col-md-4 col-form-label text-md-end">{{ __('Placa De Inventario') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Placa_inventario" type="number" min="0" value="" placeholder="Ingrese La Placa De Inventario" class="form-control @error('Placa_inventario') is-invalid @enderror" name="Placa_inventario" value="{{ old('Placa_inventario') }}" required autocomplete="Placa_inventario">
+                                <input id="Placa_inventario" oninput="capitalizeFirstLetter(this)" type="number" min="0" value="" placeholder="Ingrese La Placa De Inventario" class="form-control @error('Placa_inventario') is-invalid @enderror" name="Placa_inventario" value="{{ old('Placa_inventario') }}" required autocomplete="Placa_inventario">
 
                                 @error('Placa_inventario')
                                 <span class="invalid-feedback" role="alert">
@@ -29,7 +26,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="Id_unidad" class="col-md-4 col-form-label text-md-end">{{ __('Codigo De La unidad') }}</label>
+                            <label for="Id_unidad" class="col-md-4 col-form-label text-md-end">{{ __('Nombre De La unidad') }}</label>
                             <div class="col-md-6">
                                 <select class="form-select" name="Id_unidad" aria-label="Default select example">
                                     <option value="">Seleccione una...</option>
@@ -49,10 +46,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="Nom_semoviente" class="col-md-4 col-form-label text-md-end">{{ __('Nombre Del Semoviente') }}</label>
+                            <label for="Nom_semoviente" class="col-md-4 col-form-label text-md-end">{{ __('Identificación Del Semoviente') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Nom_semoviente" type="text"  placeholder="Ingrese El Nombre Del Semoviente" class="form-control @error('Nom_semoviente') is-invalid @enderror" name="Nom_semoviente" value="{{ old('Nom_semoviente') }}" required autocomplete="Nom_semoviente">
+                                <input id="Nom_semoviente" oninput="capitalizeFirstLetter(this)" type="text" placeholder="Ingrese El Nombre Del Semoviente" class="form-control @error('Nom_semoviente') is-invalid @enderror" name="Nom_semoviente" value="{{ old('Nom_semoviente') }}" required autocomplete="Nom_semoviente">
 
                                 @error('Nom_semoviente')
                                 <span class="invalid-feedback" role="alert">
@@ -62,10 +59,10 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="Id_raza" class="col-md-4 col-form-label text-md-end">{{ __('Codigo De La Raza') }}</label>
+                            <label for="Id_raza" class="col-md-4 col-form-label text-md-end">{{ __('Nombre De La Raza') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-select" name="Id_raza" aria-label="Default select example">
+                                <select id="Id_raza" class="form-select" name="Id_raza" aria-label="Default select example">
                                     <option value="" selected>Seleccione una...</option>
                                     @foreach($raza as $Raza)
                                     <option value="{{$Raza['Id_raza']}}">
@@ -85,7 +82,7 @@
 
                             <div class="col-md-6">
 
-                                <select class="form-select" name="Tipo_semoviente" aria-label="Default select example">
+                                <select id="Tipo_semoviente" class="form-select" name="Tipo_semoviente" aria-label="Default select example">
                                     <option value="" selected>Seleccione una...</option>
                                     <option value="Reproductor">Reproductor</option>
                                     <option value="Lactante">Lactante</option>
@@ -105,7 +102,7 @@
                             <label for="Sexo_semoviente" class="col-md-4 col-form-label text-md-end">{{ __('Sexo Semoviente') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-select" name="Sexo_semoviente" aria-label="Default select example">
+                                <select id="Sexo_semoviente" class="form-select" name="Sexo_semoviente" aria-label="Default select example">
                                     <option value="" selected>Seleccione una...</option>
                                     <option value="Macho">Macho</option>
                                     <option value="Hembra">Hembra</option>
@@ -121,7 +118,7 @@
                             <label for="Fech_nacimiento" class="col-md-4 col-form-label text-md-end">{{ __('Fecha De Nacimiento') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Fech_nacimiento" type="date" value="" class="form-control @error('Fech_nacimiento') is-invalid @enderror" name="Fech_nacimiento" value="{{ old('Fech_nacimiento') }}" required autocomplete="Fech_nacimiento">
+                                <input id="Fech_nacimiento" oninput="capitalizeFirstLetter(this)" type="date" value="" class="form-control @error('Fech_nacimiento') is-invalid @enderror" name="Fech_nacimiento" value="{{ old('Fech_nacimiento') }}" required autocomplete="Fech_nacimiento">
 
                                 @error('Fech_nacimiento')
                                 <span class="invalid-feedback" role="alert">
@@ -131,10 +128,10 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="Peso_nacimiento" class="col-md-4 col-form-label text-md-end">{{ __('Peso De Nacimiento(Kg)') }}</label>
+                            <label for="Peso_nacimiento" class="col-md-4 col-form-label text-md-end">{{ __('Peso De Nacimiento (Kg)') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Peso_nacimiento" step="any" type="number" min="0" value="" placeholder="Ingrese El Peso De Nacimiento" class="form-control @error('Peso_nacimiento') is-invalid @enderror" name="Peso_nacimiento" value="{{ old('Peso_nacimiento') }}" required autocomplete="Peso_nacimiento">
+                                <input id="Peso_nacimiento" oninput="capitalizeFirstLetter(this)" step="any" type="number" min="0" value="" placeholder="Ingrese El Peso De Nacimiento" class="form-control @error('Peso_nacimiento') is-invalid @enderror" name="Peso_nacimiento" value="{{ old('Peso_nacimiento') }}" required autocomplete="Peso_nacimiento">
 
                                 @error('Peso_nacimiento')
                                 <span class="invalid-feedback" role="alert">
@@ -143,12 +140,12 @@
                                 @enderror
                             </div>
                         </div>
-                       
+
                         <div class="row mb-3">
                             <label for="Fech_ingreso" class="col-md-4 col-form-label text-md-end">{{ __('Fecha De Ingreso') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Fech_ingreso" type="date" value="" class="form-control @error('Fech_ingreso') is-invalid @enderror" name="Fech_ingreso" value="{{ old('Fech_ingreso') }}" required autocomplete="Fech_ingreso">
+                                <input id="Fech_ingreso" oninput="capitalizeFirstLetter(this)" type="date" value="" class="form-control @error('Fech_ingreso') is-invalid @enderror" name="Fech_ingreso" value="{{ old('Fech_ingreso') }}" required autocomplete="Fech_ingreso">
 
                                 @error('Fech_ingreso')
                                 <span class="invalid-feedback" role="alert">
@@ -161,7 +158,7 @@
                             <label for="Tipo_ingreso" class="col-md-4 col-form-label text-md-end">{{ __('Tipo De Ingreso') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-select" name="Tipo_ingreso" aria-label="Default select example">
+                                <select id="Tipo_ingreso" class="form-select" name="Tipo_ingreso" aria-label="Default select example">
                                     <option value="" selected>Seleccione una...</option>
                                     <option value="Nacimiento">Nacimiento</option>
                                     <option value="Compra">Compra</option>
@@ -175,10 +172,48 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label for="Placa_padre" class="col-md-4 col-form-label text-md-end">{{ __('Placa Padre') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="Placa_padre" oninput="capitalizeFirstLetter(this)" type="number" min="0" value="" placeholder="Ingrese La Placa De Inventario Del Padre" class="form-control @error('Placa_padre') is-invalid @enderror" name="Placa_padre" value="{{ old('Placa_padre') }}" required autocomplete="Placa_padre">
+
+                                @error('Placa_padre')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="Placa_madre" class="col-md-4 col-form-label text-md-end">{{ __('Placa Madre') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="Placa_madre" oninput="capitalizeFirstLetter(this)" type="number" min="0" value="" placeholder="Ingrese La Placa De Inventario Madre" class="form-control @error('Placa_madre') is-invalid @enderror" name="Placa_madre" value="{{ old('Placa_madre') }}" required autocomplete="Placa_madre">
+
+                                @error('Placa_madre')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="Valor_semoviente" class="col-md-4 col-form-label text-md-end">{{ __('Valor Semoviente (COP)') }}</label>
+                            <div class="col-md-6">
+                                <input id="Valor_semoviente" oninput="capitalizeFirstLetter(this)" type="number" step="0.01" pattern="^\d+(?:\.\d{1,2})?$" min="0" value="{{ old('Valor_semoviente') }}" placeholder="Ingrese el Valor del Semoviente" class="form-control @error('Valor_semoviente') is-invalid @enderror" name="Valor_semoviente" required autocomplete="Valor_semoviente">
+
+                                @error('Valor_semoviente')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button style="margin-left: 80px;" type="submit" class="btn btn-success" v-on:click="Guardarregistro()">
+                                <button style="margin-left: 80px;" type="submit" class="btn btn-success" v-on:click="GuardarSemoviente()">
                                     <i class="fa-sharp fa-solid fa-floppy-disk"></i>
                                 </button>
                             </div>

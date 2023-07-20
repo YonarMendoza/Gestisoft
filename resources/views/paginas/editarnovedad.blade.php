@@ -6,9 +6,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card"  style="border: 3px ridge white">
-                <div class="card-header">{{ __('Registro De Novedades') }}</div>
-
+            <div class="card" style="border: 3px ridge white">
+                <h1 style="margin: auto;font-size:24px;margin-top:10px">Editar Registro De Novedades</h1>
                 <div class="card-body">
                     @foreach($Novedad as $novedad)
                     <form method="POST" action="{{ url('/')}}/novedad/{{$novedad['Id_novedad']}}">
@@ -17,7 +16,7 @@
                         <div class="row mb-3">
                             <label for="Id_unidad" class="col-md-4 col-form-label text-md-end">{{ __('Fecha De La Novedad') }}</label>
                             <div class="col-md-6">
-                                <input id="Fech_novedad" type="date" min="0" value="{{ $novedad['Fech_novedad']}}" class="form-control @error('Fech_novedad') is-invalid @enderror" name="Fech_novedad" value="{{ old('Fech_novedad') }}" required autocomplete="Fech_novedad">
+                                <input id="Fech_novedad" oninput="capitalizeFirstLetter(this)" type="date" min="0" value="{{ $novedad['Fech_novedad']}}" class="form-control @error('Fech_novedad') is-invalid @enderror" name="Fech_novedad" value="{{ old('Fech_novedad') }}" required autocomplete="Fech_novedad">
 
                                 @error('Fech_novedad')
                                 <span class="invalid-feedback" role="alert">
@@ -31,7 +30,7 @@
                             <label for="Nom_novedad" class="col-md-4 col-form-label text-md-end">{{ __('Nombre De La Novedad') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Nom_novedad" type="text" value="{{ $novedad['Nom_novedad']}}" class="form-control @error('Nom_novedad') is-invalid @enderror" name="Nom_novedad" value="{{ old('Nom_novedad') }}" required autocomplete="Nom_novedad">
+                                <input id="Nom_novedad" oninput="capitalizeFirstLetter(this)" type="text" value="{{ $novedad['Nom_novedad']}}" class="form-control @error('Nom_novedad') is-invalid @enderror" name="Nom_novedad" value="{{ old('Nom_novedad') }}" required autocomplete="Nom_novedad">
 
                                 @error('Nom_novedad')
                                 <span class="invalid-feedback" role="alert">
@@ -41,7 +40,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="Id_semoviente" class="col-md-4 col-form-label text-md-end">{{ __('Codigo Del Semoviente') }}</label>
+                            <label for="Id_semoviente" class="col-md-4 col-form-label text-md-end">{{ __('Placa Del Semoviente') }}</label>
 
                             <div class="col-md-6">
                                 <select class="form-select" name="Id_semoviente" aria-label="Default select example">
@@ -62,7 +61,7 @@
                             <label for="Descripcion" class="col-md-4 col-form-label text-md-end">{{ __('Descripcion') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Descripcion" type="text" value="{{ $novedad['Descripcion']}}" class="form-control @error('Descripcion') is-invalid @enderror" name="Descripcion" value="{{ old('Descripcion') }}" required autocomplete="Descripcion">
+                                <input id="Descripcion" oninput="capitalizeFirstLetter(this)" type="text" value="{{ $novedad['Descripcion']}}" class="form-control @error('Descripcion') is-invalid @enderror" name="Descripcion" value="{{ old('Descripcion') }}" required autocomplete="Descripcion">
 
                                 @error('Descripcion')
                                 <span class="invalid-feedback" role="alert">
@@ -72,7 +71,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="Id_responsable" class="col-md-4 col-form-label text-md-end">{{ __('Responsable') }}</label>
+                            <label for="Id_responsable" class="col-md-4 col-form-label text-md-end">{{ __('Nombre Del Responsable') }}</label>
 
                             <div class="col-md-6">
                                 <select class="form-select" name="Id_responsable" aria-label="Default select example">
@@ -98,11 +97,11 @@
                         </div>
                     </form>
                     @endforeach
+
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
-@endif
-@endif
+    @endsection
+    @endif
+    @endif

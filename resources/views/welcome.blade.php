@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ asset('img/aaa.ico')}}" type="image/x-icon">
     <!-- CSRF Token -->
@@ -49,7 +49,7 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="{{ url('quienes') }}"><i style="margin-left:40px" class="fa-solid fa-users"></i> <br><b>Quienes Somos</b></a>
+                                    <a class="nav-link active" href="{{ url('quienes') }}"><i style="margin-left:40px" class="fa-solid fa-users"></i> <br><b>Desarrolladores</b></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link active" href="{{ route('login') }}"><i style="margin-left:40px" class="fa-sharp fa-solid fa-user"></i> <br><b>{{ __('Iniciar Sesion') }}</b></a>
@@ -69,7 +69,9 @@
             <br>
             <h1> <b>Somos Gestisoft </b></h1>
             <br>
-            <p>Gestisoft es un software diseñado para agilizar la gestión de inventarios en unidades de ganadería caprina, ovina y cunicultura. Este programa facilita a los aprendices una forma sencilla y detallada de acceder a información sobre dichas unidades. <br> En resumen, Gestisoft es un software altamente mejorado que permitirá a los aprendices obtener información fácil y detallada sobre las unidades de ganadería caprina, ovina y cunicultura.</p>
+            <p>Gestisoft es un software especializado en la gestión de inventarios en unidades de Ganadería, Caprinos, Ovinos y Cunicultura. Su objetivo principal es agilizar este proceso, brindando a los Instructores, Pasantes y Aprendices una interfaz sencilla y detallada para acceder a información relevante sobre estas unidades. <br>
+                En resumen, Gestisoft es un software que brinda a los Instructores, Pasantes y Aprendices información precisa y completa sobre la gestión de inventarios de las unidades de Ganadería, Caprinos, Ovinos y Cunicultura.
+            </p>
         </div>
         <div class="derecha"></div>
     </section>

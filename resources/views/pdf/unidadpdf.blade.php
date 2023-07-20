@@ -1,6 +1,6 @@
 @php
 use Carbon\Carbon;
-$fecha = Carbon::now('America/Bogota')->format('Y-m-d H:i:s A');
+$fecha = Carbon::now('America/Bogota')->format('Y-m-d h:i:s A');
 @endphp
 <!DOCTYPE html>
 <html lang="en">
