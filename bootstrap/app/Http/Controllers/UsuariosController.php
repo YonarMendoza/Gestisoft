@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\UsuariosModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class UsuariosController extends Controller
 {
@@ -47,32 +46,19 @@ class UsuariosController extends Controller
 
     public function update($id, Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'Tipo_usuario' => 'required|string|max:255',
-            'password' => 'nullable|string|min:0|confirmed', // Validación de la contraseña
-        ]);
-    
-        $datos = [
+        $datos = array(
             "name" => $request->input("name"),
             "email" => $request->input("email"),
-            "Tipo_usuario" => $request->input("Tipo_usuario"),
-        ];
-    
-        // Si se proporciona una nueva contraseña, encripta y agrega a los datos
-        if ($request->filled('password')) {
-            $datos['password'] = Hash::make($request->input('password'));
-        }
-    
+            "Tipo_usuario" => $request->input("Tipo_usuario")
+
+        );
+
         if (!empty($datos)) {
             $Usuario = UsuariosModel::where("id", $id)->update($datos);
-            return redirect("/usuarios")->with('success', 'Usuario actualizado correctamente.');
+            return redirect(("/usuarios"));
         }
-    
-        return redirect("/usuarios")->with('error', 'No se pudo actualizar el usuario.');
     }
-    
+
     public function destroy($id)
     {
         return $Usuario = UsuariosModel::where("id", $id)->delete();

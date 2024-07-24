@@ -42,7 +42,6 @@
                             <label for="Tipo_usuario" class="col-md-4 col-form-label text-md-end">{{ __('Tipo De Usuario') }}</label>
 
                             <div class="col-md-6">
-
                                 <select class="form-select" name="Tipo_usuario" aria-label="Default select example">
                                     <option value="" selected>Seleccione una...</option>
                                     <option value="Instructor">Instructor</option>
@@ -60,9 +59,12 @@
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
 
                             <div class="col-md-6">
-                                <input id="passwordInput" type="password" value="" class="form-control @error('password') is-invalid @enderror" placeholder="Ingrese La Contraseña Del Usuario" name="password" value="{{ old('password') }}" required autocomplete="password">
-                                <button class="btn btn-outline-secondary btn-sm" style="margin-left: 397px;margin-top:-64px" type="button" id="verPasswordButton" v-on:click="togglePasswordVisibility()"><i id="verPasswordIcon" class="fas fa-eye"></i></button>
-
+                                <div class="input-group">
+                                    <input id="passwordInput" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Ingrese La Contraseña Del Usuario" name="password" value="{{ old('password') }}" required autocomplete="new-password">
+                                    <button class="btn btn-outline-secondary" type="button" id="verPasswordButton" onclick="togglePasswordVisibility('passwordInput', 'verPasswordIcon')">
+                                        <i id="verPasswordIcon" class="fas fa-eye"></i>
+                                    </button>
+                                </div>
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -73,7 +75,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button style="margin-left: 80px;" type="submit" class="btn btn-success" v-on:click="GuardarregistroUsuario()">
+                                <button style="margin-left: 80px;" type="submit" class="btn btn-success">
                                     <i class="fa-sharp fa-solid fa-floppy-disk"></i>
                                 </button>
                             </div>
@@ -87,3 +89,20 @@
 @endsection
 @endif
 @endif
+
+<script>
+    function togglePasswordVisibility(inputId, iconId) {
+        var passwordInput = document.getElementById(inputId);
+        var passwordIcon = document.getElementById(iconId);
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            passwordIcon.classList.remove('fa-eye');
+            passwordIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            passwordIcon.classList.remove('fa-eye-slash');
+            passwordIcon.classList.add('fa-eye');
+        }
+    }
+</script>

@@ -58,7 +58,9 @@
                                 </li>
                             </ul>
                         </div>
+                    </ul>
                 </div>
+            </div>
         </nav>
 
         <main class="py-4">
@@ -66,9 +68,7 @@
         </main>
     </div>
 
-    <section class="vh-100" style="background: rgba(1, 1, 1, 1.0);
-                background: linear-gradient(315deg, rgba(1, 1, 1, 1.0), rgba(6, 118, 43, 1.0));
-                background-repeat: no-repeat;margin-top:-50px">
+    <section class="vh-100" style="background: rgba(1, 1, 1, 1.0); background: linear-gradient(315deg, rgba(1, 1, 1, 1.0), rgba(6, 118, 43, 1.0)); background-repeat: no-repeat;margin-top:-50px">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col col-xl-10">
@@ -94,7 +94,7 @@
                                         <h style="margin-top: 10px;"><b>Por Favor, Ingresar Tu Correo Electronico Y Contraseña</b></h>
                                         <div class="form-outline mb-4" style="margin-top: 20px;">
                                             <label class="form-label"><b>Correo Electronico</b></label>
-                                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Ingrese Tu Correo Electronico" />
+                                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="email" placeholder="Ingrese Tu Correo Electronico" />
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -104,32 +104,21 @@
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example22"><b>Contraseña</b></label>
-                                            <input id="passwordInput" type="password" value="" class="form-control @error('password') is-invalid @enderror" placeholder="Ingrese Tu Contraseña" name="password" value="{{ old('password') }}" required autocomplete="password">
-                                            <button class="btn btn-outline-secondary btn-sm" style="margin-left: 80px;margin-top:-150px; " type="button" id="verPasswordButton" onclick="togglePasswordVisibility()"><i id="verPasswordIcon" class="fas fa-eye"></i></button> @error('password')
+                                            <div class="input-group">
+                                                <input id="passwordInput" type="password" value="" class="form-control @error('password') is-invalid @enderror" placeholder="Ingrese Tu Contraseña" name="password" required autocomplete="password">
+                                                <button class="btn btn-outline-secondary" type="button" id="verPasswordButton" onclick="togglePasswordVisibility('passwordInput', 'verPasswordIcon')">
+                                                    <i id="verPasswordIcon" class="fas fa-eye"></i>
+                                                </button>
+                                            </div>
+                                            @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                             @enderror
-                                            <script>
-                                                function togglePasswordVisibility() {
-                                                    var passwordInput = document.getElementById('passwordInput');
-                                                    var passwordIcon = document.getElementById('verPasswordIcon');
-
-                                                    if (passwordInput.type === 'password') {
-                                                        passwordInput.type = 'text';
-                                                        passwordIcon.classList.remove('fa-eye');
-                                                        passwordIcon.classList.add('fa-eye-slash');
-                                                    } else {
-                                                        passwordInput.type = 'password';
-                                                        passwordIcon.classList.remove('fa-eye-slash');
-                                                        passwordIcon.classList.add('fa-eye');
-                                                    }
-                                                }
-                                            </script>
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <button style="  background-image: linear-gradient(to right, black, green);color: white;padding: 10px 20px;border: none;border-radius: 5px;font-size: 16px;cursor: pointer;" type="submit">Iniciar Sesión
+                                            <button style="background-image: linear-gradient(to right, black, green);color: white;padding: 10px 20px;border: none;border-radius: 5px;font-size: 16px;cursor: pointer;" type="submit">Iniciar Sesión
                                             </button>
                                         </div>
                                     </form>
@@ -142,6 +131,23 @@
             </div>
         </div>
     </section>
+
+    <script>
+        function togglePasswordVisibility(inputId, iconId) {
+            var passwordInput = document.getElementById(inputId);
+            var passwordIcon = document.getElementById(iconId);
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordIcon.classList.remove('fa-eye');
+                passwordIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                passwordIcon.classList.remove('fa-eye-slash');
+                passwordIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ asset('img/aaa.ico')}}" type="image/x-icon">
     <!-- CSRF Token -->
@@ -14,6 +14,45 @@
     <script src="https://kit.fontawesome.com/17405db9f0.js" crossorigin="anonymous"></script>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <style>
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        section {
+            text-align: center;
+            margin: 20px;
+            width: 250px; /* Set a fixed width for consistency */
+        }
+
+        section img {
+            width: 100%;
+            height: 250px; /* Set a fixed height for consistency */
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, filter 0.3s, box-shadow 0.3s;
+            filter: grayscale(50%);
+        }
+
+        section img:hover {
+            transform: scale(1.05) rotate(2deg);
+            filter: grayscale(0%);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        section h2 {
+            font-size: 20px; /* Uniform font size */
+            margin: 10px 0;
+        }
+
+        section p {
+            font-size: 16px; /* Uniform font size */
+            margin: 5px 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -62,35 +101,34 @@
                 </div>
         </nav>
 
-
         <main class="py-4">
             @yield('content')
         </main>
     </div>
     <main>
         <section>
-            <img  src="{{ asset('img/Yonar_Final.jpg')}}" alt="Person 1">
-            <h2><b>Yonar Estiber <br> Mendoza Cuellar</b></h2>
-            <p><b> Rol:</b> <br> Analista y Desarrollador</p>
-            <p><b> Correo:</b> <br> Myonar47@gmail.com</p>
+            <img src="{{ asset('img/aaa.png')}}" alt="Nombre del Desarrollador">
+            <h2><b>Nombre del Desarrollador</b></h2>
+            <p><b> Rol:</b> <br> Rol del Desarrollador</p>
+            <p><b> Correo:</b> <br> Correo del Desarrollador</p>
         </section>
         <section>
-            <img style="width: 600px;height: 290px;" src="{{ asset('img/Laura_Final.jpg')}}" alt="Person 2">
-            <h2><b>Laura Valentina Manchola Parra</b></h2>
-            <p><b> Rol:</b> <br> Analista y Desarrolladora</p>
-            <p><b> Correo:</b> <br> Valentinamanchola27@gmail.com</p>
+            <img src="{{ asset('img/aaa.png')}}" alt="Nombre del Desarrollador">
+            <h2><b>Nombre del Desarrollador</b></h2>
+            <p><b> Rol:</b> <br> Rol del Desarrollador</p>
+            <p><b> Correo:</b> <br>Correo del Desarrollador</p>
         </section>
-        <section style="margin-left: -20px;">
-            <img src="{{ asset('img/Leidy_Final.jpg')}}" alt="Person 3">
-            <h2><b> Leidy Vanessa <br> Jara  Saez</b></h2>
-            <p><b> Rol:</b> <br> Analista y Desarrolladora</p>
-            <p><b> Correo:</b> <br> Leidyjara1108@gmail.com</p>
+        <section>
+            <img src="{{ asset('img/aaa.png')}}" alt="Nombre del Desarrollador">
+            <h2><b>Nombre del Desarrollador</b></h2>
+            <p><b> Rol:</b> <br>Rol del Desarrollador</p>
+            <p><b> Correo:</b> <br>Correo del Desarrollador</p>
         </section>
-        <section style="margin-left: -10px;">
-            <img style="width: 175px;" src="{{ asset('img/Carol_Final1.jpg')}}" alt="Person 2">
-            <h2><b> Carol Tatiana <br> Carrera Quintana</b></h2>
-            <p><b> Rol:</b> <br> Analista y Desarrolladora</p>
-            <p><b> Correo:</b> <br> Carolcarrera2004@gmail.com</p>
+        <section>
+            <img src="{{ asset('img/aaa.png')}}" alt="Nombre del Desarrollador">
+            <h2><b>Nombre del Desarrollador</b></h2>
+            <p><b> Rol:</b> <br>Rol del Desarrollador</p>
+            <p><b> Correo:</b> <br>Correo del Desarrollador</p>
         </section>
     </main>
 </body>

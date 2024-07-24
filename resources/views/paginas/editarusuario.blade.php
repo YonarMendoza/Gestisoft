@@ -58,10 +58,43 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Nueva Contraseña') }}</label>
 
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input id="passwordInput" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Ingrese Tu Contraseña" name="password" value="{{ old('password') }}" autocomplete="new-password">
+                                    <button class="btn btn-outline-secondary" type="button" id="verPasswordButton" onclick="togglePasswordVisibility('passwordInput', 'verPasswordIcon')">
+                                        <i id="verPasswordIcon" class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="password_confirmation" class="col-md-4 col-form-label text-md-end">{{ __('Confirmar Nueva Contraseña') }}</label>
+
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input id="passwordConfirmationInput" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="Confirme Su Contraseña" name="password_confirmation" autocomplete="new-password">
+                                    <button class="btn btn-outline-secondary" type="button" id="verPasswordConfirmationButton" onclick="togglePasswordVisibility('passwordConfirmationInput', 'verPasswordConfirmationIcon')">
+                                        <i id="verPasswordConfirmationIcon" class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                @error('password_confirmation')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button style="margin-left: 80px;" type="submit" class="btn btn-success" v-on:click="Editarregistro()">
+                                <button style="margin-left: 80px;" type="submit" class="btn btn-success">
                                     <i class="fa-sharp fa-solid fa-floppy-disk"></i>
                                 </button>
                             </div>
@@ -72,6 +105,23 @@
             </div>
         </div>
     </div>
-    @endsection
-    @endif
-    @endif
+@endsection
+@endif
+@endif
+
+<script>
+    function togglePasswordVisibility(inputId, iconId) {
+        var passwordInput = document.getElementById(inputId);
+        var passwordIcon = document.getElementById(iconId);
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            passwordIcon.classList.remove('fa-eye');
+            passwordIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            passwordIcon.classList.remove('fa-eye-slash');
+            passwordIcon.classList.add('fa-eye');
+        }
+    }
+</script>
